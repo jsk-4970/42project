@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:42:47 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/31 23:51:41 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/03 23:05:39 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_setcheck_e(s1, set);
 	len = end - start;
 	if (len < 0)
-		return ("");
+		return (ft_strdup("0"));
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		return (NULL);

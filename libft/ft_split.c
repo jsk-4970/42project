@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 19:28:14 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/31 23:53:39 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/03 23:19:40 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_count(char const *s, char c)
 	y = 1;
 	i = 0;
 	len = ft_strlen(s);
-	if (s == NULL || len <= 1)
+	if (s == NULL || len == 0)
 		return (0);
 	if (s[0] == c)
 		y--;
@@ -54,7 +54,7 @@ char	**ft_freeall(char **ret)
 	int	y;
 
 	y = 0;
-	while (ret)
+	while (ret[y])
 	{
 		free(ret[y]);
 		y++;
@@ -116,7 +116,7 @@ char	**ft_split(char const *s, char c)
 //    char **result;
 //
 //    printf("--- TEST 1: Basic case ---\n");
-//    result = ft_split("hello world from tokyo", ' ');
+//    result = ft_split(" a b ", ' ');
 //    print_and_free_split(result);
 //    printf("\n");
 //
@@ -136,7 +136,7 @@ char	**ft_split(char const *s, char c)
 //    printf("\n");
 //
 //    printf("--- TEST 5: String with only delimiters ---\n");
-//    result = ft_split("---------", '-');
+//    result = ft_split("-----------------------------------", '-');
 //    print_and_free_split(result);
 //    printf("\n");
 //

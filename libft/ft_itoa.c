@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 09:35:49 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/31 17:48:26 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/03 23:05:41 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	long	longn;
 
 	if (n == 0)
-		return ("0");
+		return (ft_strdup("0"));
 	nlen = ft_nlen(n);
 	longn = (long)n;
 	ret = malloc(sizeof(char) * (nlen + 1));
