@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:09:07 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/26 22:09:30 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/07 12:46:12 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t		i;
 	size_t		j;
 
+    if (start > ft_strlen(s))
+        return (ft_strdup(""));
+    if (len >= ft_strlen(s) - start)
+        len = ft_strlen(s) - start;
 	ret = malloc(sizeof(char) * (len + 1));
-	if (ret == NULL)
+	if (ret == NULL || s == NULL)
 		return (NULL);
 	i = 0;
 	while (s[i] && i < start)

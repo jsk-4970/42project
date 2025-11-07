@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 20:45:21 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/06 13:46:39 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/07 11:04:55 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	char	*tmp;
 
 	n = 0;
+	tmp = (char *)big;
 	if (little[0] == '\0')
 		return (tmp);
-	if (big == NULL || little == NULL
-		|| (little[0] == '\0' && len == 0))
+	if (big == NULL || big[0] == '\0' || little == NULL || len <= 0)
 		return (NULL);
-	tmp = (char *)big;
 	llen = ft_strlen(little);
 	while (n < len && tmp[n])
 	{
