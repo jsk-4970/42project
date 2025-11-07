@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:07:15 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/30 12:24:17 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/07 21:00:07 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ char	*ft_strrchr(const char *s, int c)
 	len = ft_strlen(s);
 	if (c == 0)
 		return (tmp + len);
-	while (0 <= len)
+	while (len)
 	{
+        len--;
 		if (tmp[len] == c)
 			return (&tmp[len]);
-		len--;
 	}
 	return (NULL);
 }

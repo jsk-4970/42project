@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:14:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/29 21:57:42 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/07 21:05:05 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	ret = mem;
 	i = 0;
-	while (i < nmemb)
+	while (i < nmemb * size)
 	{
 		mem[i] = 0;
 		i++;
