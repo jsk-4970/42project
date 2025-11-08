@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:06:57 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/06 12:01:39 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 21:25:36 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 char	*ft_strdup(const char *s)
 {
 	char	*dup;
-	int		size;
-	int		i;
+	size_t	size;
+	size_t	i;
 
 	size = ft_strlen(s);
 	dup = (char *)malloc(sizeof(char) * (size + 1));

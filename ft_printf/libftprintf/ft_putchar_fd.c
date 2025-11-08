@@ -6,11 +6,11 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:27:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/28 12:42:26 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 22:21:28 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 #include <unistd.h>
 
 void	ft_putchar_fd(char c, int fd)

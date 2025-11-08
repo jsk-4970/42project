@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:14:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/07 21:05:05 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/08 21:25:35 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*mem;
-	char	*ret;
 	size_t	i;
 
 	mem = malloc(nmemb * size);
@@ -30,7 +29,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		mem[i] = 0;
 		i++;
 	}
-	return (ret);
+	return (mem);
 }
 
 //#include <stdio.h>

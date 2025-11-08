@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:24:01 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/08 14:32:53 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 21:25:35 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	us2 = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	if (us1 != 0 && us2 == 0)
-		return (1);
 	while (m < n && (us1[m] || us2[m]))
 	{
 		if (us1[m] > us2[m])

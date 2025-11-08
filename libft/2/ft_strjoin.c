@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:35:13 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/31 22:32:25 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 21:25:34 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*res;
-	int		len1;
-	int		len2;
+	char		*res;
+	size_t		len1;
+	size_t		len2;
 
 	if (!s1 || !s2)
 		return (NULL);

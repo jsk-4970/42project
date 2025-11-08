@@ -6,11 +6,11 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:19:41 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/01 00:07:22 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 22:21:27 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 #include <unistd.h>
 
 void	ft_putnbr_fd(int n, int fd)
