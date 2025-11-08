@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:09:07 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/07 12:46:12 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/08 11:29:57 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char		*ret;
-	size_t		i;
-	size_t		j;
+	char	*ret;
+	size_t	i;
+	size_t	j;
 
-    if (start > ft_strlen(s))
-        return (ft_strdup(""));
-    if (len >= ft_strlen(s) - start)
-        len = ft_strlen(s) - start;
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len >= ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
 	ret = malloc(sizeof(char) * (len + 1));
 	if (ret == NULL || s == NULL)
 		return (NULL);
@@ -42,8 +42,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 }
 
 //#include <stdio.h>
-//int main(void)
+// int main(void)
 //{
-//	printf("*s = hello 42,start = l, len = 4, ret = %s", 
+//	printf("*s = hello 42,start = l, len = 4, ret = %s",
 //		ft_substr("hello 42", 'l', 4));
 //}

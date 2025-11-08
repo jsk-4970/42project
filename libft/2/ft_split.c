@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 19:28:14 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/03 23:19:40 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 16:03:43 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 int	ft_count(char const *s, char c)
 {
-	int	y;
-	int	i;
-	int	len;
+	int		count;
+	int		in_words;
 
-	y = 1;
-	i = 0;
-	len = ft_strlen(s);
-	if (s == NULL || len == 0)
+	if (s == NULL)
 		return (0);
-	if (s[0] == c)
-		y--;
-	if (s[len - 1] == c)
-		y--;
-	while (s[i])
+	count = 0;
+	in_words = 0;
+	while (*s)
 	{
-		if (s[i] == c && s[i + 1] != c)
-			y++;
-		i++;
+		if (*s == c)
+			in_words = 0;
+		else if (*s != c && in_words == 0)
+		{
+			count++;
+			in_words = 1;
+		}
+		s++;
 	}
-	return (y);
+	return (count);
 }
 
 int	ft_getlen(char const *s, char c)
@@ -70,12 +69,10 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		len;
 
-	if (s == NULL)
-		return (NULL);
 	n = ft_count(s, c);
 	i = 0;
-	ret = malloc(sizeof(char *) * (n + 1));
-	if (!s || !ret)
+	ret = malloc((n + 1) * sizeof(char *));
+	if (!ret || s == NULL)
 		return (NULL);
 	while (*s && i < n)
 	{
@@ -84,7 +81,7 @@ char	**ft_split(char const *s, char c)
 		len = ft_getlen(s, c);
 		ret[i] = ft_substr(s, 0, len);
 		if (!ret[i])
-			return (ft_freeall(&ret[i]));
+			return (ft_freeall(ret));
 		i++;
 		s += len;
 	}
@@ -136,7 +133,7 @@ char	**ft_split(char const *s, char c)
 //    printf("\n");
 //
 //    printf("--- TEST 5: String with only delimiters ---\n");
-//    result = ft_split("-----------------------------------", '-');
+//    result = ft_split("xxxxxxxxhello", 'x');
 //    print_and_free_split(result);
 //    printf("\n");
 //

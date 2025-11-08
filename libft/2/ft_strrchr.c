@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:07:15 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/07 21:00:07 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/08 12:25:32 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strrchr(const char *s, int c)
 		return (tmp + len);
 	while (len)
 	{
-        len--;
+		len--;
 		if (tmp[len] == c)
 			return (&tmp[len]);
 	}
@@ -35,7 +35,7 @@ char	*ft_strrchr(const char *s, int c)
 //#include <stdio.h>
 //#include <string.h>
 //
-//int main(void)
+// int main(void)
 //{
 //	char str[] = "tokugawaieyasu";
 //	char *result;

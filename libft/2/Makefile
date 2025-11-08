@@ -36,14 +36,18 @@ SRCS = ft_atoi.c \
 OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
+AR = ar rcs
+#ar means some .o files get integrated to .a filr
+
 all: $(NAME)
+
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-%.o: %.c libft.h
-	$(CC) $(FCLAGS) -c $< -o $@
+	$(AR) $(NAME) $(OBJS)
+
 clean:
 	rm -f $(OBJS)
+
 fclean: clean
 	rm -f $(NAME)
+
 re: fclean $(NAME)
-.PHONY: all clean fclean re

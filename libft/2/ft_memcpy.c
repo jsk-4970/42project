@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:57:13 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/31 21:41:02 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 14:26:48 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	udest = (unsigned char *)dest;
 	usrc = (unsigned char *)src;
-	if (n == 0 || usrc == NULL)
+	if (n == 0 || (udest == NULL && usrc == NULL))
 		return (udest);
 	while (i < n)
 	{

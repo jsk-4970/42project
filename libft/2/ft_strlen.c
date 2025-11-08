@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:29:53 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/06 11:48:07 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 12:19:47 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ size_t	ft_strlen(const char *str)
 	size_t	n;
 	size_t	len;
 
-	if (str == NULL)
-		return (0);
 	n = 0;
 	len = 0;
 	while (str[n])

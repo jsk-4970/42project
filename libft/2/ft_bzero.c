@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:46:06 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/25 16:03:46 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/08 12:19:48 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_bzero(void *s, size_t n)
 
 	us = (unsigned char *)s;
 	i = 0;
-	if (s == NULL)
-		return ;
 	while (i < n)
 	{
 		us[i] = 0;
