@@ -6,26 +6,25 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:19:41 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/08 22:21:27 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/09 21:41:32 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <unistd.h>
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr(int n)
 {
 	long	longn;
 
 	longn = (long)n;
 	if (longn < 0)
 	{
-		ft_putchar_fd('-', fd);
+		ft_putchar('-');
 		longn = -longn;
 	}
 	if (longn >= 10)
-		ft_putnbr_fd(longn / 10, fd);
-	ft_putchar_fd((longn % 10) + '0', fd);
+		ft_putnbr(longn / 10);
+	ft_putchar((longn % 10) + '0');
 }
 
 //#include <stdio.h>

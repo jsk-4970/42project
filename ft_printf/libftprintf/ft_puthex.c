@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_puthex_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 12:48:16 by jyamada           #+#    #+#             */
-/*   Updated: 2025/10/28 12:48:55 by jyamada          ###   ########.fr       */
+/*   Created: 2025/11/09 20:36:16 by aburi             #+#    #+#             */
+/*   Updated: 2025/11/09 20:44:45 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
-#include <unistd.h>
+//void ft_puthex_fd(char *hex, int fd)
+//{
+//
+//}
 
-void	ft_putstr_fd(char *s, int fd)
+int main(void)
 {
-	while (*s)
-	{
-		write(fd, s, 1);
-		s++;
-	}
+    int p;
+
+    p = 123;
+    printf("p:%p\n", &p);
+    printf("x:%x\n", p);
 }

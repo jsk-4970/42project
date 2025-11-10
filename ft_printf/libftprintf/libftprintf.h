@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 20:41:35 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/08 22:01:25 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/09 21:36:58 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -48,9 +49,18 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+void	ft_putchar(char c);
+void	ft_putstr(char *s);
+void	ft_putendl(char *s);
+void	ft_putnbr(int n);
+
+int     ft_read_next(const char *format, va_list args, int count);
+int     ft_printf(const char *format, ...);
+int     put_c(int c);
+int     put_s(char *s);
+int     put_p(void *p);
+int     put_d(long d);
+int     put_u(unsigned long u);
+int     put_x(unsigned long x, char c);
 
 #endif

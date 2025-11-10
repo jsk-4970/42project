@@ -6,28 +6,28 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 21:55:49 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/08 22:25:19 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/09 21:33:57 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		put_c(int c, int count)
+int		put_c(int c)
 {
 	ft_putchar_fd(c, 1);
-	return (count + 1);
+	return (1);
 }
 
-int		put_s(char *s, int count)
+int		put_s(char *s)
 {
 	ft_putstr_fd(s, 1);
-	return (count + ft_strlen(s));
+	return (ft_strlen(s));
 }
 
 //int		put_p()
 //{}
 
-int		put_d(int d, int count)
+int		put_d(long d)
 {
 	int		digit;
 
@@ -38,7 +38,12 @@ int		put_d(int d, int count)
 		d /= 10;
 		digit++;
 	}
-	return (count + digit);
+	return (digit);
+}
+
+int     put_u(unsigned long u)
+{
+    int
 }
 
 int main(void)

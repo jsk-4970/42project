@@ -6,17 +6,33 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:08:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/08 21:59:53 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/09 21:34:47 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "libft.h"
+#include "libftprintf.h"
 
-int    ft_read_next(const char *format, int count)
+int    ft_read_next(const char *format, va_list args, int count)
 {
-	if (*format == c)
-		put_c(va_arg(ap, int), count);
+	if (*format == 'c')
+		return (put_c(va_arg(args, int)));
+    if (*format == 's')
+        return (put_s(va_arg(args, char *)));
+    if (*format == 'p')
+        return (put_p(va_arg(args, void*)));
+    if (*format == 'd')
+        return (put_d(va_arg(args, int)));
+    if (*format == 'i')
+        return (put_d(va_arg(args, int)));
+    if (*format == 'u')
+        return (put_u(va_arg(args, int)));
+    if (*format == 'x')
+        return (put_x(va_arg(args, int), 'x'));
+    if (*format == 'X')
+        return (put_x(va_arg(args, int), 'X'));
+    if (*format == '%')
+        return (ft_putchar_fd('%', 1), 1);
 	return (count);
 }
 
@@ -32,7 +48,7 @@ int		ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-            count = ft_read_next(format, count);
+            count = ft_read_next(format, args,count);
 		}
 		else
 		{

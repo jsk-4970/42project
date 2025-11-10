@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 12:27:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/08 22:21:28 by jyamada          ###   ########.fr       */
+/*   Created: 2025/10/28 12:43:07 by jyamada           #+#    #+#             */
+/*   Updated: 2025/11/09 21:39:48 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_putendl(char *s)
 {
-	write(fd, &c, 1);
+	while (*s)
+	{
+		write(1, s, 1);
+		s++;
+	}
+	write(1, "\n", 1);
 }
