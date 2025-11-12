@@ -6,11 +6,11 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:10:01 by aburi             #+#    #+#             */
-/*   Updated: 2025/10/31 21:55:17 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/11 21:03:06 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
 int	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {

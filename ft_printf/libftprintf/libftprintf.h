@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 20:41:35 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/09 21:36:58 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/11 11:42:28 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_putstr(char *s);
 void	ft_putendl(char *s);
 void	ft_putnbr(int n);
 
-int     ft_read_next(const char *format, va_list args, int count);
+int     ft_read_next(const char *format, va_list args);
 int     ft_printf(const char *format, ...);
 int     put_c(int c);
 int     put_s(char *s);
