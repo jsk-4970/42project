@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:08:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/12 17:10:56 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/12 20:57:48 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int    ft_read_next(const char *format, va_list args)
 		return (put_c(va_arg(args, int)));
     else if (*format == 's')
         return (put_s(va_arg(args, char *)));
-//    if (*format == 'p')
-//        return (put_p(va_arg(args, void*)));
+    if (*format == 'p')
+        return (put_p(va_arg(args, int)));
     else if (*format == 'd')
         return (put_d(va_arg(args, int)));
     else if (*format == 'i')
         return (put_d(va_arg(args, int)));
-//    else if (*format == 'u')
-//        return (put_u(va_arg(args, int)));
-//    else if (*format == 'x')
-//        return (put_x(va_arg(args, int), 'x'));
-//    else if (*format == 'X')
-//        return (put_x(va_arg(args, int), 'X'));
+    else if (*format == 'u')
+        return (put_u(va_arg(args, int)));
+    else if (*format == 'x')
+        return (put_x(va_arg(args, int), 'x'));
+    else if (*format == 'X')
+        return (put_x(va_arg(args, int), 'X'));
     else if (*format == '%')
         return (ft_putchar('%'), 1);
     return (0);
