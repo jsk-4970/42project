@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   puts.c                                             :+:      :+:    :+:   */
+/*   ft_puts2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 21:55:49 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 19:26:43 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/13 21:36:33 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	put_c(int c)
-{
-	ft_putchar((char)c);
-	return (1);
-}
-
-int	put_s(char *s)
-{
-	if (s == NULL)
-	{
-		ft_putstr("NULL");
-	}
-	ft_putstr(s);
-	return (ft_strlen(s));
-}
 
 int	put_d(long d)
 {
@@ -37,9 +21,7 @@ int	put_d(long d)
 	if (d < 0)
 		digit++;
 	if (d == 0)
-	{
-		ft_putnbr(0);
-	}
+		return (1);
 	while (d)
 	{
 		d /= 10;
@@ -48,10 +30,18 @@ int	put_d(long d)
 	return (digit);
 }
 
-// int		put_d(unsigned long x)
-//{
-//
-//}
+int	put_u(unsigned long u)
+{
+	int	digit;
+
+	ft_putnbr(u);
+	while (u)
+	{
+		u /= 10;
+		digit++;
+	}
+	return (digit);
+}
 
 int	put_x(unsigned long x, char c)
 {
@@ -80,7 +70,7 @@ int	put_x(unsigned long x, char c)
 	return (digit + 1);
 }
 
-int	put_p(void *ptr)
+int	put_p(uintptr_t ptr)
 {
 	int	ret;
 

@@ -1,6 +1,7 @@
 NAME = libftprintf.a
 SRCS = ft_printf.c \
-		puts.c \
+		ft_puts1.c \
+		ft_puts2.c \
 		ft_putchar.c \
 		ft_putnbr.c \
 		ft_putstr.c \
