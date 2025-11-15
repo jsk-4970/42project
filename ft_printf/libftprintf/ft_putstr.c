@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:48:16 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 20:04:23 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:29:07 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_putstr(char *s)
 {
-	int	ret;
 	while (*s)
 	{
 		if (write(1, s, 1) == -1)

@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 21:34:10 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 20:06:07 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:28:55 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	put_s(char *s)
 {
 	if (s == NULL)
 	{
-		ft_putstr("(null)");
+		if (ft_putstr("(null)") == -1)
+			return (-1);
 		return (6);
 	}
 	if (ft_putstr(s) == -1)
