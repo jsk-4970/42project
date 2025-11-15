@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:19:41 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 20:19:22 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/16 00:39:40 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(size_t n)
+int	ft_putnbr(long n)
 {
 	long	longn;
 

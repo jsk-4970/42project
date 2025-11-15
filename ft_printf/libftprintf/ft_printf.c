@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:08:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 21:10:30 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/16 00:59:01 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ int	ft_read_next(const char *format, va_list args)
 	{
 		if (ft_putchar('%') == -1)
 			return (-1);
-		else
-			return (1);
 	}
-	else
-		return (1);
+	return (1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -51,9 +48,8 @@ int	ft_printf(const char *format, ...)
 	count = 0;
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format == '%' && format++)
 		{
-			format++;
 			ret = ft_read_next(format, args);
 			if (ret == -1)
 				return (-1);
@@ -71,12 +67,12 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
- int	main(void)
- {
-	int a = printf("+:%%%%%%%\n");
-	int b = ft_printf("-:%%%%%%%\n");
+//  int	main(void)
+//  {
+// 	int a = printf("+:%%%%%%%\n");
+// 	int b = ft_printf("-:%%%%%%%\n");
 ////// 	int c = printf("+:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 
 //////42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
 ////// 	int d = ft_printf("-:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 
@@ -97,4 +93,4 @@ int	ft_printf(const char *format, ...)
 ////	ft_printf("-:%u\n", 0);
 ////	printf("+:%x\n", 0);
 ////	ft_printf("-:%x\n", 0);
-}
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 20:41:35 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 19:12:58 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/16 00:39:49 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_strlen(const char *str);
 int		ft_strlcpy(char *dest, const char *src, size_t dstsize);
 int		ft_putchar(char c);
 int		ft_putstr(char *s);
-int		ft_putnbr(size_t n);
+int		ft_putnbr(long n);
 
 int		ft_read_next(const char *format, va_list args);
 int		ft_printf(const char *format, ...);

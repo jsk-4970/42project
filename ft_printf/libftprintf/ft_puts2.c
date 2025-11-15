@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puts2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 21:55:49 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 20:19:22 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/16 01:00:17 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,13 @@ int	put_x(unsigned long x, char c)
 		return (ft_putchar('0'), 1);
 	while (x > 0)
 	{
-		arr[digit] = base[x % 16];
+		arr[digit++] = base[x % 16];
 		x /= 16;
-		digit++;
 	}
-	arr[digit] = '\0';
 	i = digit;
 	while (i--)
-	{
 		if (ft_putchar(arr[i]) == -1)
 			return (-1);
-	}
 	return (digit);
 }
 
