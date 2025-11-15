@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 21:34:10 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 21:34:18 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/14 21:05:27 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	put_c(int c)
 {
+	if (c == 0)
+		return (0);
 	ft_putchar((char)c);
 	return (1);
 }

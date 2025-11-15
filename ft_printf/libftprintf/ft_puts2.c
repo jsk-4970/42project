@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 21:55:49 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 21:36:33 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/14 10:04:28 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	put_u(unsigned long u)
 {
 	int	digit;
 
+	digit = 0;
 	ft_putnbr(u);
 	while (u)
 	{

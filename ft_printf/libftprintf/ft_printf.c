@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:08:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 21:08:23 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/14 21:39:27 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		count;
 
-	if (format == NULL)
-		return (-1);
 	va_start(args, format);
 	count = 0;
 	while (*format)
@@ -72,15 +70,21 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-//#include <stdio.h>
-// int main(void)
-//{
-//    ft_putnbr(ft_printf("%s %d\n", "hello", 2));
+#include <stdio.h>
+int main(void)
+{
+//	printf("printf: %c %c %c \n", '0', 0, '1');
+//	ft_printf("ft_printf: %c %c %c \n", '0', 0, '1');
+	printf("printf: %s %s \n", "", "-");
+	ft_printf("ft_printf: %s %s \n", "", "-");
+	printf("printf: %p ", -1);
+	ft_printf("printf: %p ", -1);
+
 //	printf("printf:%s\n", NULL);
 //	ft_printf("ft_printf:%s\n", NULL);
-//	printf("printf:%p\n", -1);
+//	printf("printf:%p\n", (void *)-1);
 //	ft_printf("ft_printf:%p\n", -1);
 //	printf("printf:%d\n", INT_MIN);
 //	ft_printf("ft_printf:%d\n", INT_MIN);
-//
-//}
+
+}
