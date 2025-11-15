@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 21:55:49 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 19:52:46 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:10:53 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	put_d(long d)
 	if (ft_putnbr(d) == -1)
 		return (-1);
 	if (d < 0)
+	{
 		digit++;
+		d /= -1;
+	}
 	if (d == 0)
 		return (1);
 	while (d)
@@ -92,7 +95,7 @@ int	put_p(uintptr_t ptr)
 		return (-1);
 	ret = put_x((uintptr_t)ptr, 'x');
 	if (ret == -1)
-		return (-1)
+		return (-1);
 	return (ret + 2);
 }
 

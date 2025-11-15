@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:29:53 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 19:27:41 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:09:04 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 int	ft_strlen(const char *str)
 {
-	int	n;
 	int	len;
 
 	if (str == NULL)
 		return (0);
-	n = 0;
 	len = 0;
-	while (str[n])
-	{
-		n++;
+	while (str[len])
 		len++;
-	}
 	return (len);
 }
 

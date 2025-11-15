@@ -6,13 +6,13 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:19:41 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 19:27:23 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:10:53 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(size_t n)
+int	ft_putnbr(size_t n)
 {
 	long	longn;
 
@@ -24,7 +24,10 @@ void	ft_putnbr(size_t n)
 		longn = -longn;
 	}
 	if (longn >= 10)
-		ft_putnbr(longn / 10);
+	{
+		if (ft_putnbr(longn / 10) == -1)
+			return (-1);
+	}
 	if (ft_putchar((longn % 10) + '0') == -1)
 		return (-1);
 }
