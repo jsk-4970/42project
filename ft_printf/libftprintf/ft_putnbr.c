@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:19:41 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 21:06:28 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 19:27:23 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ void	ft_putnbr(size_t n)
 	longn = (long)n;
 	if (longn < 0)
 	{
-		ft_putchar('-');
+		if (ft_putchar('-') == -1)
+			return (-1);
 		longn = -longn;
 	}
 	if (longn >= 10)
 		ft_putnbr(longn / 10);
-	ft_putchar((longn % 10) + '0');
+	if (ft_putchar((longn % 10) + '0') == -1)
+		return (-1);
 }
 
 //#include <stdio.h>

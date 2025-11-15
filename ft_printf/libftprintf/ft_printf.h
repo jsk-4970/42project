@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 20:41:35 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 14:41:51 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 19:12:58 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 int		ft_strlen(const char *str);
 int		ft_strlcpy(char *dest, const char *src, size_t dstsize);
-void	ft_putchar(char c);
-void	ft_putstr(char *s);
-void	ft_putnbr(size_t n);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(size_t n);
 
 int		ft_read_next(const char *format, va_list args);
 int		ft_printf(const char *format, ...);

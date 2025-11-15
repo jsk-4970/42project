@@ -6,13 +6,14 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:27:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 19:25:20 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 19:24:40 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	if (write(1, &c, 1) == -1)
+		return (-1);
 }

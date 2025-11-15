@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 21:55:49 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 15:50:45 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 19:52:46 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	put_d(long d)
 	int	digit;
 
 	digit = 0;
-	ft_putnbr(d);
+	if (ft_putnbr(d) == -1)
+		return (-1);
 	if (d < 0)
 		digit++;
 	if (d == 0)
@@ -35,7 +36,8 @@ int	put_u(unsigned long u)
 	int	digit;
 
 	digit = 0;
-	ft_putnbr(u);
+	if (ft_putnbr(u) == -1)
+		return (-1);
 	if (u == 0)
 		return (1);
 	while (u)
@@ -69,7 +71,10 @@ int	put_x(unsigned long x, char c)
 	arr[digit] = '\0';
 	i = digit;
 	while (i--)
-		ft_putchar(arr[i]);
+	{
+		if (ft_putchar(arr[i]) == -1)
+			return (-1);
+	}
 	return (digit);
 }
 
@@ -78,9 +83,16 @@ int	put_p(uintptr_t ptr)
 	int	ret;
 
 	if (ptr == 0)
-		return (ft_putstr("(nil)"), 5);
-	ft_putstr("0x");
+	{
+		if (ft_putstr("(nil)") == -1)
+			return (-1);
+		return (5);
+	}
+	if (ft_putstr("0x") == -1)
+		return (-1);
 	ret = put_x((uintptr_t)ptr, 'x');
+	if (ret == -1)
+		return (-1)
 	return (ret + 2);
 }
 

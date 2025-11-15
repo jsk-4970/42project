@@ -6,17 +6,19 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:48:16 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/13 19:27:31 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 19:52:48 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
+	int	ret;
 	while (*s)
 	{
-		write(1, s, 1);
+		if (write(1, s, 1) == -1)
+			return (-1);
 		s++;
 	}
 }
