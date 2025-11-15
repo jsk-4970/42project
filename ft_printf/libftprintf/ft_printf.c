@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:08:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 20:10:48 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:19:18 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		count;
+	int		ret;
 
 	va_start(args, format);
 	count = 0;
@@ -51,13 +52,15 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (ft_get_read_next(format, args) == -1)
+			ret = ft_read_next(format, args);
+			if (ret == -1)
 				return (-1);
-			count += ft_read_next(format, args);
+			count += ret;
 		}
 		else
 		{
-			ft_putchar(*format);
+			if (ft_putchar(*format) == -1)
+				return (-1);
 			count++;
 		}
 		format++;

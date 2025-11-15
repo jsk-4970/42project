@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:19:41 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 20:10:53 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:19:22 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_putnbr(size_t n)
 	}
 	if (ft_putchar((longn % 10) + '0') == -1)
 		return (-1);
+	return (1);
 }
 
 //#include <stdio.h>
