@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:08:31 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/15 21:10:30 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/11/16 10:28:51 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,30 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
- int	main(void)
- {
-	int a = printf("+:%%%%%%%\n");
-	int b = ft_printf("-:%%%%%%%\n");
-////// 	int c = printf("+:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 
-//////42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
-////// 	int d = ft_printf("-:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 
-//////42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
-//
-//	int	c = printf("+:%p\n",(void *)0);
-//	int	d = ft_printf("-:%p\n", (void *)0);
-//	printf("a = %d\nb = %d\nc = %d\nd = %d\n", a, b, c, d);
-////// 	printf("printf: %p ", -1);
-//////	ft_printf("printf: %p ", -1);
-//////	printf("printf:%s\n", NULL);
-//////	ft_printf("+:%s\n", NULL);
-////	printf("+:%p\n",(void *)-1);
-////	ft_printf("-:%p\n",(void *)-1);
-////	printf("+:%d\n", INT_MIN);
-////	ft_printf("-:%d\n", INT_MIN);
-////	printf("+:%u\n", 0);
-////	ft_printf("-:%u\n", 0);
-////	printf("+:%x\n", 0);
-////	ft_printf("-:%x\n", 0);
-}
+//  int	main(void)
+//  {
+// 	int a = printf("+:%%%%%%%\n");
+// 	int b = ft_printf("-:%%%%%%%\n");
+// ////// 	int c = printf("+:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 
+// //////42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+// ////// 	int d = ft_printf("-:%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 
+// //////42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+// //
+// //	int	c = printf("+:%p\n",(void *)0);
+// //	int	d = ft_printf("-:%p\n", (void *)0);
+// //	printf("a = %d\nb = %d\nc = %d\nd = %d\n", a, b, c, d);
+// ////// 	printf("printf: %p ", -1);
+// //////	ft_printf("printf: %p ", -1);
+// //////	printf("printf:%s\n", NULL);
+// //////	ft_printf("+:%s\n", NULL);
+// ////	printf("+:%p\n",(void *)-1);
+// ////	ft_printf("-:%p\n",(void *)-1);
+// ////	printf("+:%d\n", INT_MIN);
+// ////	ft_printf("-:%d\n", INT_MIN);
+// ////	printf("+:%u\n", 0);
+// ////	ft_printf("-:%u\n", 0);
+// ////	printf("+:%x\n", 0);
+// ////	ft_printf("-:%x\n", 0);
+// }
