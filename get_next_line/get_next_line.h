@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:04:04 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/18 15:54:29 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/20 17:13:17 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 }                   t_list;
 
 char	*get_next_line(int fd);
-int     ft_getc(int fd);
+int     ft_getstr(int fd);
+int     find_next_line(char *str);
 
 #endif
