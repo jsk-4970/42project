@@ -6,13 +6,14 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:04:04 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/28 20:52:55 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/28 22:19:46 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+#include <cstddef>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -27,6 +28,12 @@ typedef struct s_list
     char            *content;
     struct s_list   *next;
 }                   t_list;
+
+size_t  ft_strlen(const char *str);
+char    *ft_strchr(const char, int c);
+size_t  ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char    *ft_strjoin(char const *s1, char const *s2);
 
 char    *get_next_line(int fd);
 t_list  *append(t_list *list, char *buf);
