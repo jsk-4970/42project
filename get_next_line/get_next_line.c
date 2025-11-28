@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:01:58 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/20 17:13:16 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/26 13:06:39 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ char	*getstr(int fd)
 
 char	*get_next_line(int fd)
 {
-	struct s_list	*contents;
-
+	struct t_list contents = getstr(fd);
 	if (contents == NULL)	
 		return (NULL);
 	if (find_next_line(contents))	
