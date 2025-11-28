@@ -3,66 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 16:01:58 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/26 13:06:39 by aburi            ###   ########.fr       */
+/*   Created: 2025/11/28 15:36:34 by aburi             #+#    #+#             */
+/*   Updated: 2025/11/28 20:51:51 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	find_next_line(char *str)
+//return the length to newline
+int		len_to_newline(char *buf)
 {
-	
+	int	ret;
+
+	ret = 0;
+	return (ret);
 }
 
-char	*getstr(int fd)
+//the func to duplicate buf to list(maybe by '\n') and enter NULL to next
+t_list	*append(t_list *list, char *buf)
 {
-	static char buf[BUFSIZE];
-	static char *bufp;
-	static int n;
+	static t_list	*new_node;
+	int				len;
 
-	if (n == 0)
+	new_node = malloc(sizeof(t_list));
+	new_node -> content = buf;
+	new_node -> next = NULL;
+	len = len_to_newline(buf);
+	while (len < BUFSIZE)
 	{
-		n = read(fd, buf, BUFSIZE);
-		bufp = buf;
+
 	}
-	if (--n >= 0)
-		return (bufp++);
-	else
-		return (NULL);
+	return (new_node);
 }
 
 char	*get_next_line(int fd)
 {
-	struct t_list contents = getstr(fd);
-	if (contents == NULL)	
+	static t_list	*list;
+	static t_list	*new_node;
+	char			*buf;
+	int				read_ret;
+
+	buf = malloc(BUFSIZE + 1);
+	read_ret = read(fd, buf, BUFSIZE);
+	if (read_ret <= 0)
 		return (NULL);
-	if (find_next_line(contents))	
-		
+	buf[BUFSIZE + 1] = '\0';
+	append(list, buf);
+	list = new_node;
+	return (new_node -> content);
 }
 
-int main(void)
-{
-	int fd;
-	int c;
-	char *res;
-
-	fd = open("text.txt", O_RDONLY);
-	printf("fd:%d\n", fd);
-	while (1)
-	{
-		c = ft_getstr(fd);
-		if (c == EOF)
-			break;
-		printf("%c", c);
-	}
-//	while (res)
-//	{
-//		res = get_next_line(fd);
-//		printf("%s\n", res);
-//	}
-	close (fd);
-	return (0);
-}
