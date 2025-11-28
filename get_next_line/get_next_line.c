@@ -6,7 +6,7 @@
 /*   By: aburi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 15:36:34 by aburi             #+#    #+#             */
-/*   Updated: 2025/11/28 22:19:50 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/28 22:24:55 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_next_line(int fd)
 		read_ret = read(fd, buf, BUFSIZE);
 		if (read_ret == -1)
 		{
-			//handle error somehow
+			//handle error somehow in the case read() fails
 		}
 		buf[BUFSIZE] = '\0';
 		append(list, buf);

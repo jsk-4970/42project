@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:04:04 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/28 22:19:46 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/28 22:21:36 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_list
 }                   t_list;
 
 size_t  ft_strlen(const char *str);
-char    *ft_strchr(const char, int c);
+char    *ft_strchr(const char *buf, int c);
 size_t  ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char    *ft_strjoin(char const *s1, char const *s2);
