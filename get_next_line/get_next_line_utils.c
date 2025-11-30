@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:03:04 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/28 22:19:53 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/30 14:52:06 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,27 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	len;
 
+	if (str == NULL)
+		return (0);
 	len = 0;
 	while (str[len])
 		len++;
 	return (len);
 }
 
-char	*ft_strchr(const char *s, int c)
+//if it find '\n', return the len to '\n' but if it doesnt find '\n', return -1
+int	len_to_newline(const char *s)
 {
-	char	*tmp;
+	int	len;
 
-	c %= 256;
-	tmp = (char *)s;
-	if (c == 0)
-		return (tmp + ft_strlen(s));
-	while (*tmp)
+	len = 0;
+	while (len < BUFSIZE)
 	{
-		if (*tmp == c)
-			return (tmp);
-		tmp++;
+		if (s[len] == '\n')
+			return (len);
+		len++;
 	}
-	return (NULL);
+	return (-1);
 }
 
 
