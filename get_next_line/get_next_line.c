@@ -6,7 +6,7 @@
 /*   By: aburi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 15:36:34 by aburi             #+#    #+#             */
-/*   Updated: 2025/11/28 22:24:55 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/30 12:35:27 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 
 
 //the func to duplicate buf to list(maybe by '\n') and enter NULL to next
-t_list	*append(t_list *list, char *buf)
+t_list	*append(t_list *new_node, char *buf)
 {
-	static t_list	*new_node;
 	int				len;
 
-	len = len_to_newline(buf);
 	new_node = malloc(sizeof(t_list));
 	new_node -> content = buf;
 	new_node -> next = NULL;
@@ -43,6 +41,7 @@ char	*get_next_line(int fd)
 	char			*buf;
 	int				read_ret;
 
+	list = NULL;
 	buf = malloc(BUFSIZE + 1);
 	read_ret = 1;
 	while (ft_strchr(buf, '\n') && buf != 0)
@@ -53,10 +52,30 @@ char	*get_next_line(int fd)
 			//handle error somehow in the case read() fails
 		}
 		buf[BUFSIZE] = '\0';
-		append(list, buf);
+		append(new_node, buf);
 		list -> content = ft_strjoin(list -> content, buf);
 	}
+	list -> next = new_node;
 	free(buf);
 	return (new_node -> content);
 }
 
+int main(void)
+{
+	int fd;
+	char *line;
+
+	fd = open("text.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("file could not open");
+		return (1);
+	}
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
+	return (1);
+}

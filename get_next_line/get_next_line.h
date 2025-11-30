@@ -6,14 +6,13 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:04:04 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/28 22:21:36 by aburi            ###   ########.fr       */
+/*   Updated: 2025/11/29 15:35:24 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <cstddef>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -36,7 +35,7 @@ size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char    *ft_strjoin(char const *s1, char const *s2);
 
 char    *get_next_line(int fd);
-t_list  *append(t_list *list, char *buf);
-int     len_to_newline(char *str);
+t_list  *append(t_list *new_node, char *buf);
+//int     len_to_newline(char *str);
 
 #endif
