@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:04:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/09 21:19:00 by aburi            ###   ########.fr       */
+/*   Updated: 2025/12/17 13:52:26 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	*ft_getfile(int fd,  char *stash)
 		if (ret_read < -1)
 			return (NULL);
 		buf[ret_read] = '\0';
-//		printf("stash:%s\nbuf:%s\n", stash, buf);
 		tmp_stash = malloc(ft_strlen(stash) + ft_strlen(buf) + 1);
 		if (tmp_stash == NULL)
 			return (NULL);
