@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:04:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/17 13:52:26 by aburi            ###   ########.fr       */
+/*   Updated: 2025/12/17 14:04:30 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 size_t	ft_strlen(const char *str)
 
 {
-	size_t	len;
+	size_t len;
 
 	if (str == NULL)
 		return (0);
@@ -46,16 +46,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dlen + slen);
 }
 
-
-//get file and write the contents to buf until end of file
-//if read() fails, return NULL;
-//tmp_stash is actually (static char *)stash
-//new_stash is 
-char	*ft_getfile(int fd,  char *stash)
+// get file and write the contents to buf until end of file
+// if read() fails, return (NULL);
+// tmp_stash is actually (static char *)stash
+// new_stash is
+char	*ft_getfile(int fd, char *stash)
 {
-	ssize_t		ret_read;
-	char		*buf;
-	char		*tmp_stash;
+	ssize_t	ret_read;
+	char	*buf;
+	char	*tmp_stash;
 
 	ret_read = 1;
 	buf = malloc(BUFSIZE + 1);
@@ -126,7 +125,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-//int main(void)
+// int main(void)
 //{
 //	int	fd;
 //	char *tmp_stash = NULL;
@@ -142,7 +141,7 @@ char	*get_next_line(int fd)
 ////	printf("res of ft_extract_line:%s\n", line1);
 ////	line2 = ft_clean_stash(tmp_stash, ft_strlen(line1));
 ////	printf("res of ft_clean_stash:%s", line2);
-////	while (get_next_line(fd))	
+////	while (get_next_line(fd))
 ////		printf("res of gnl:%s", get_next_line(fd));
 //	printf("res of gnl:%s", get_next_line(fd));
 //	printf("res of gnl:%s", get_next_line(fd));
@@ -150,5 +149,5 @@ char	*get_next_line(int fd)
 //	printf("res of gnl:%s", get_next_line(fd));
 ////	while (get_next_line(fd))
 ////		printf("res of gnl:%s", get_next_line(fd));
-//		
+//
 //}
