@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:04:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/17 19:52:01 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/12/18 14:32:23 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ char	*ft_getfile(int fd, char *stash)
 	while (1)
 	{
 		ret_read = read(fd, buf, BUFSIZE);
-		if (ret_read < 0)
-			return (free(buf), NULL);
+		if (ret_read <= 0)
+			return (free(buf), stash);
 		buf[ret_read] = '\0';
 		tmp_stash = malloc(ft_strlen(stash) + ret_read + 1);
 		if (tmp_stash == NULL)
@@ -162,7 +162,10 @@ char	*ft_clean_stash(char *tmp_stash, int len_line)
 	new_line = malloc(len_new_line + 1);
 	if (new_line == NULL)
 		return (free(tmp_stash), NULL);
-	new_line[0] = '\0'; ft_strlcat(new_line, &tmp_stash[len_line], len_new_line + 1); free(tmp_stash); return (new_line);
+	new_line[0] = '\0';
+	ft_strlcat(new_line, &tmp_stash[len_line], len_new_line + 1);
+	free(tmp_stash);
+	return (new_line);
 }
 
 char	*get_next_line(int fd)
@@ -181,14 +184,14 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int main(void)
+//int main(void)
 //{
 //	int	fd;
-//	char *tmp_stash = NULL;
-//	char *line1;
-//	char *line2;
+////	char *tmp_stash = NULL;
+////	char *line1;
+////	char *line2;
 //
-//	fd = open("text.txt", O_RDONLY);
+//	fd = open("tex.txt", O_RDONLY);
 //	if (fd == -1)
 //		return (printf("file could not open\n"), 1);
 ////	tmp_stash = ft_getfile(fd, tmp_stash);
