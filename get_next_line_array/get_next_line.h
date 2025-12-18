@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:06:00 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/18 14:34:23 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/12/18 15:09:58 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-# ifndef BUFSIZE
-#  define BUFSIZE 42
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
 # endif
 
 char	*ft_getfile(int fd, char *buf);

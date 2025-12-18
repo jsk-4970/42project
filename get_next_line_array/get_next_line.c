@@ -6,19 +6,16 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:04:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/18 14:32:23 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/12/18 15:37:28 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 size_t	ft_strlen(const char *str)
 
 {
-	size_t len;
+	size_t	len;
 
 	if (str == NULL)
 		return (0);
@@ -48,40 +45,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dlen + slen);
 }
 
-// get file and write the contents to buf until end of file
-// if read() fails, return (NULL);
-// tmp_stash is actually (static char *)stash
-// new_stash is
-//char	*ft_getfile(int fd, char *stash)
-//{
-//	ssize_t	ret_read;
-//	char	*buf;t(tmp_sta
-//	char	*tmp_stash;
-//
-//	ret_read = 1;
-//	buf = malloc(BUFSIZE + 1);
-//	if (buf == NULL)
-//		return (NULL);
-//	while (ret_read != 0)
-//	{
-//		ret_read = read(fd, buf, BUFSIZE);
-//		if (ret_read < -1)
-//			return (NULL);
-//		buf[ret_read] = '\0';
-//		tmp_stash = malloc(ft_strlen(stash) + ft_strlen(buf) + 1);
-//		if (tmp_stash == NULL)
-//			return (NULL);
-//		tmp_stash[0] = '\0';
-//		ft_strlcat(tmp_stash, stash, ft_strlen(stash) + 1);
-//		ft_strlcat(tmp_stash, buf, ft_strlen(stash) + ft_strlen(buf) + 1);
-//		free(stash);t(tmp_sta
-//		stash = tmp_stash;
-//	}
-//	free(buf);
-//	return (stash);
-//}
-
-int		find_new_line(char *str)
+int	find_new_line(char *str)
 {
 	int		i;
 
@@ -90,11 +54,11 @@ int		find_new_line(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\n')	
+		if (str[i] == '\n')
 			return (i);
 		i++;
 	}
-	return (-1);	
+	return (-1);
 }
 
 char	*ft_getfile(int fd, char *stash)
@@ -104,12 +68,12 @@ char	*ft_getfile(int fd, char *stash)
 	char	*tmp_stash;
 
 	ret_read = 1;
-	buf = malloc(BUFSIZE + 1);
+	buf = malloc(BUFFER_SIZE + 1);
 	if (buf == NULL)
 		return (NULL);
 	while (1)
 	{
-		ret_read = read(fd, buf, BUFSIZE);
+		ret_read = read(fd, buf, BUFFER_SIZE);
 		if (ret_read <= 0)
 			return (free(buf), stash);
 		buf[ret_read] = '\0';
@@ -122,7 +86,7 @@ char	*ft_getfile(int fd, char *stash)
 		free(stash);
 		stash = tmp_stash;
 		if (ret_read == 0 || find_new_line(tmp_stash) != -1)
-			break;
+			break ;
 	}
 	return (free(buf), stash);
 }
@@ -183,30 +147,3 @@ char	*get_next_line(int fd)
 	stash = ft_clean_stash(stash, ft_strlen(line));
 	return (line);
 }
-
-//int main(void)
-//{
-//	int	fd;
-////	char *tmp_stash = NULL;
-////	char *line1;
-////	char *line2;
-//
-//	fd = open("tex.txt", O_RDONLY);
-//	if (fd == -1)
-//		return (printf("file could not open\n"), 1);
-////	tmp_stash = ft_getfile(fd, tmp_stash);
-////	printf("res of ft_getfile:%s\n", tmp_stash);
-////	line1 = ft_extract_line(tmp_stash);
-////	printf("res of ft_extract_line:%s\n", line1);
-////	line2 = ft_clean_stash(tmp_stash, ft_strlen(line1));
-////	printf("res of ft_clean_stash:%s", line2);
-////	while (get_next_line(fd))
-////		printf("res of gnl:%s", get_next_line(fd));
-//	printf("res of gnl:%s", get_next_line(fd));
-//	printf("res of gnl:%s", get_next_line(fd));
-//	printf("res of gnl:%s", get_next_line(fd));
-//	printf("res of gnl:%s", get_next_line(fd));
-////	while (get_next_line(fd))
-////		printf("res of gnl:%s", get_next_line(fd));
-//
-//}
