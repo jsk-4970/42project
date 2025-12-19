@@ -3,62 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:04:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/18 16:41:59 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/12/19 15:58:56 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
-
+int	ft_read(int fd, char *buf)
 {
-	size_t	len;
+	int	ret_read;
 
-	if (str == NULL)
-		return (0);
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t	slen;
-	size_t	dlen;
-	size_t	n;
-
-	slen = ft_strlen(src);
-	dlen = ft_strlen(dst);
-	n = 0;
-	if (dstsize <= dlen)
-		return (dstsize + slen);
-	while (n < dstsize - dlen - 1 && src[n])
-	{
-		dst[n + dlen] = src[n];
-		n++;
-	}
-	dst[dlen + n] = '\0';
-	return (dlen + slen);
-}
-
-int	find_new_line(char *str)
-{
-	int		i;
-
-	if (str == NULL)
-		return (-1);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\n')
-			return (i);
-		i++;
-	}
-	return (-1);
+	ret_read = read(fd, buf, BUFFER_SIZE);
+	if (ret_read == -1)
+		return (ret_read);
+	if (ret_read == 0)
+		return (ret_read);
+	buf[ret_read] = '\0';
+	return (ret_read);
 }
 
 char	*ft_getfile(int fd, char *stash)
@@ -67,35 +31,32 @@ char	*ft_getfile(int fd, char *stash)
 	char	*buf;
 	char	*tmp_stash;
 
-	ret_read = 1;
 	buf = malloc(BUFFER_SIZE + 1);
 	if (buf == NULL)
-		return (NULL);
+		return (free(stash), NULL);
 	while (1)
 	{
-		ret_read = read(fd, buf, BUFFER_SIZE);
-		if (ret_read <= 0)
-			return (free(buf), stash);
-		buf[ret_read] = '\0';
+		ret_read = ft_read(fd, buf);
+		if (ret_read == -1)
+			return (free(buf), free(stash), NULL);
 		tmp_stash = malloc(ft_strlen(stash) + ret_read + 1);
 		if (tmp_stash == NULL)
-			return (NULL);
+			return (free(buf), free(stash), NULL);
 		tmp_stash[0] = '\0';
 		ft_strlcat(tmp_stash, stash, ft_strlen(stash) + 1);
 		ft_strlcat(tmp_stash, buf, ft_strlen(tmp_stash) + ret_read + 1);
 		free(stash);
-		stash = tmp_stash;
 		if (ret_read == 0 || find_new_line(tmp_stash) != -1)
 			break ;
 	}
-	return (free(buf), stash);
+	return (free(buf), tmp_stash);
 }
 
 char	*ft_extract_line(char *tmp_stash)
 {
 	char	*line;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (tmp_stash[i] != '\0' && tmp_stash[i] != '\n')
@@ -115,10 +76,10 @@ char	*ft_extract_line(char *tmp_stash)
 	return (line);
 }
 
-char	*ft_clean_stash(char *tmp_stash, int len_line)
+char	*ft_clean_stash(char *tmp_stash, size_t len_line)
 {
 	char	*new_line;
-	int		len_new_line;
+	size_t	len_new_line;
 
 	len_new_line = ft_strlen(tmp_stash) - len_line;
 	if (len_new_line == 0)
@@ -137,13 +98,17 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*line;
 
-	if (fd == -1)
+	if (fd < 0)
+		return (NULL);
+	if (BUFFER_SIZE <= 0)
 		return (NULL);
 	if (stash == NULL || find_new_line(stash) == -1)
 		stash = ft_getfile(fd, stash);
 	if (stash == NULL)
 		return (NULL);
 	line = ft_extract_line(stash);
+	if (line == NULL)
+		return (free(stash), stash = NULL, NULL);
 	stash = ft_clean_stash(stash, ft_strlen(line));
 	return (line);
 }

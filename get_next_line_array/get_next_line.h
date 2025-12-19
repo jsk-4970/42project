@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:06:00 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/18 15:09:58 by jyamada          ###   ########.fr       */
+/*   Updated: 2025/12/19 15:59:13 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GET_NEXT_LINE_H
 
 # include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <sys/types.h>
 # include <unistd.h>
@@ -23,9 +22,13 @@
 #  define BUFFER_SIZE 42
 # endif
 
+size_t	ft_strlen(const char *str);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+int		ft_read(int fd, char *buf);
+ssize_t	find_new_line(char *str);
 char	*ft_getfile(int fd, char *buf);
 char	*ft_extract_line(char *buf);
-char	*ft_clean_stash(char *tmp_stash, int len_line);
+char	*ft_clean_stash(char *tmp_stash, size_t len_line);
 char	*get_next_line(int fd);
 
 #endif
