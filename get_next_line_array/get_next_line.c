@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:04:08 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/19 15:58:56 by aburi            ###   ########.fr       */
+/*   Updated: 2025/12/19 16:27:52 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_read(int fd, char *buf)
 	int	ret_read;
 
 	ret_read = read(fd, buf, BUFFER_SIZE);
-	if (ret_read == -1)
-		return (ret_read);
 	if (ret_read == 0)
+		return (buf[0] = '\0', ret_read);
+	if (ret_read == -1)
 		return (ret_read);
 	buf[ret_read] = '\0';
 	return (ret_read);
@@ -46,6 +46,7 @@ char	*ft_getfile(int fd, char *stash)
 		ft_strlcat(tmp_stash, stash, ft_strlen(stash) + 1);
 		ft_strlcat(tmp_stash, buf, ft_strlen(tmp_stash) + ret_read + 1);
 		free(stash);
+		stash = tmp_stash;
 		if (ret_read == 0 || find_new_line(tmp_stash) != -1)
 			break ;
 	}
@@ -104,8 +105,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (stash == NULL || find_new_line(stash) == -1)
 		stash = ft_getfile(fd, stash);
-	if (stash == NULL)
-		return (NULL);
+	if (stash == NULL || stash[0] == '\0')
+		return (free(stash), stash = NULL, NULL);
 	line = ft_extract_line(stash);
 	if (line == NULL)
 		return (free(stash), stash = NULL, NULL);

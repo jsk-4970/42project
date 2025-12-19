@@ -6,16 +6,14 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:06:00 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/19 15:59:13 by aburi            ###   ########.fr       */
+/*   Updated: 2025/12/19 16:09:33 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <fcntl.h>
 # include <stdlib.h>
-# include <sys/types.h>
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
