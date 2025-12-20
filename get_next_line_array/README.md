@@ -4,19 +4,19 @@
 
 ## Description
 
-ファイルディスクリプタから1行ずつテキストを読み込む関数。`read()`を繰り返し呼び出しても、毎回次の行を正しく返す。標準入力やファイルからの逐次読み込みに使える。
+A function that reads text from a file descriptor one line at a time. Even when `read()` is called repeatedly, it correctly returns the next line each time. Useful for sequential reading from standard input or files.
 
 ## Instructions
 
-### コンパイル
+### Compilation
 
 ```bash
-cc -Wall -Wextra -Werror -D BUFSIZE=42 get_next_line.c get_next_line_utils.c your_main.c
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c your_main.c
 ```
 
-`BUFSIZE`はコンパイル時に指定するバッファサイズ。未指定の場合はデフォルト42。
+`BUFFER_SIZE` is the buffer size specified at compile time. Defaults to 42 if not specified.
 
-### 使用例
+### Usage Example
 
 ```c
 #include "get_next_line.h"
@@ -38,22 +38,22 @@ int main(void)
 
 ## Algorithm
 
-静的変数`stash`を使い、読み込み済みだが未返却のデータを保持する。
+Uses a static variable `stash` to hold data that has been read but not yet returned.
 
-1. `ft_getfile`: `read()`でファイルを読み込み、`stash`に追記していく。改行が見つかるかEOFになったら終了
-2. `ft_extract_line`: `stash`の先頭から改行（含む）までを切り出して返す
-3. `ft_clean_stash`: 返却済みの部分を`stash`から削除し、残りを保持
+1. `ft_getfile`: Reads from the file using `read()` and appends to `stash`. Stops when a newline is found or EOF is reached.
+2. `ft_extract_line`: Extracts and returns from the beginning of `stash` up to and including the newline.
+3. `ft_clean_stash`: Removes the returned portion from `stash` and retains the remainder.
 
-この方式を選んだ理由:
-- 静的変数により、関数呼び出し間でバッファの状態を保持できる
-- 改行を見つけた時点で読み込みを止めるため、必要以上にメモリを消費しない
-- 行の長さに依存せず、動的にメモリを確保するため任意の長さの行に対応可能
+Why this approach was chosen:
+- Static variables allow buffer state to persist between function calls
+- Reading stops when a newline is found, avoiding unnecessary memory consumption
+- Memory is dynamically allocated regardless of line length, supporting lines of any size
 
 ## Resources
 
 - [read(2) - Linux manual page](https://man7.org/linux/man-pages/man2/read.2.html)
 - [Static Variables in C](https://www.geeksforgeeks.org/static-variables-in-c/)
 
-### AIの使用について
+### About AI Usage
 
-READMEの作成にAIを使用した。コードの実装には使用していない。
+AI was used to create this README. It was not used for the code implementation.
