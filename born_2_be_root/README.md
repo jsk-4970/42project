@@ -1,6 +1,6 @@
 # Born2beRoot
 
-> This project has been created as part of the 42 curriculum by jyamada.
+*This project has been created as part of the 42 curriculum by jyamada.*
 
 ## Description
 
@@ -29,14 +29,35 @@ VirtualBoxを使用して、グラフィカルインターフェースを持た�
 | **Type-1 (ベアメタル型)** | ESXiやXen。ハードウェア上で直接動作し、オーバーヘッドが少ない |
 | **Kernel** | OSの中核。ハードウェアを管理し、アプリケーションに抽象化されたリソースを提供 |
 
-### OS Selection
+### OS Selection: Debian vs Rocky Linux
 
 本プロジェクトでは **Debian** を選択。
 
-| OS | パッケージ形式 | 特徴 |
+| OS | Pros | Cons |
 |---|---|---|
-| **Debian** | `.deb` / `apt` | コミュニティ駆動。安定性重視。Debian Policyが厳格 |
-| **Rocky Linux** | `.rpm` / `dnf` | RHEL互換。企業向けサポートを重視した設計 |
+| **Debian** | 安定性が高い、APTが直感的、初心者向けリソースが豊富 | 最新機能の導入が遅い場合がある |
+| **Rocky Linux** | RHEL互換、エンタープライズ環境に近い、SELinux標準 | 設定が複雑、初心者には難易度が高い |
+
+### AppArmor vs SELinux
+
+| ツール | 採用OS | 特徴 |
+|---|---|---|
+| **AppArmor** | Debian | パスベースのアクセス制御。設定が比較的容易で可読性が高い |
+| **SELinux** | Rocky | ラベルベースのアクセス制御。細粒度な制御が可能だが学習曲線が急 |
+
+### UFW vs firewalld
+
+| ツール | 採用OS | 特徴 |
+|---|---|---|
+| **UFW** | Debian | "Uncomplicated Firewall"。シンプルなコマンドで直感的に操作可能 |
+| **firewalld** | Rocky | ゾーンベースの管理。動的なルール変更に強い |
+
+### VirtualBox vs UTM
+
+| ツール | 特徴 |
+|---|---|
+| **VirtualBox** | クロスプラットフォーム。Intel Mac/Windowsで安定 |
+| **UTM** | Apple Silicon (M1/M2/M3) Macに最適化された軽量な仮想化ソフト |
 
 ---
 
@@ -89,6 +110,54 @@ Linuxにおける認証の共通基盤。パスワードポリシー（`libpam-p
 | **Entropy** | パスワードの予測不可能性 |
 | **Dictionary Attack** | 既知の単語リストを用いた総当たり攻撃 |
 
+### Password Policy
+
+#### 強度設定 (Quality Control)
+
+設定ファイル: `/etc/pam.d/common-password`
+
+| 設定 | 説明 |
+|---|---|
+| `minlen=10` | パスワードは最低10文字以上 |
+| `ucredit=-1` | 最低1文字は大文字を含める |
+| `lcredit=-1` | 最低1文字は小文字を含める |
+| `dcredit=-1` | 最低1文字は数字を含める |
+| `maxrepeat=3` | 同じ文字を3回以上連続させない |
+| `reject_username` | パスワードにユーザー名を含めない |
+| `difok=7` | 古いパスワードと少なくとも7文字は異なる |
+| `enforce_for_root` | これらのルールをrootにも適用 |
+
+#### 期限設定 (Expiration Policy)
+
+設定ファイル: `/etc/login.defs`
+
+| 設定 | 説明 |
+|---|---|
+| `PASS_MAX_DAYS 30` | パスワードの有効期限は最大30日 |
+| `PASS_MIN_DAYS 2` | 変更後、次に変更できるまで最低2日 |
+| `PASS_WARN_AGE 7` | 期限切れ7日前から警告を表示 |
+
+#### 確認方法
+
+```bash
+# 特定ユーザーのパスワード期限を確認
+sudo chage -l <username>
+```
+
+#### 既存ユーザーへの適用
+
+`/etc/login.defs` の設定は**新規作成ユーザーにのみ**自動適用される。既存ユーザーには個別に設定が必要。
+
+```bash
+sudo chage -M 30 -m 2 -W 7 <username>
+```
+
+| オプション | 説明 |
+|---|---|
+| `-M 30` | 最大有効期限を30日に設定 |
+| `-m 2` | 最小変更間隔を2日に設定 |
+| `-W 7` | 警告を7日前から表示 |
+
 ### AppArmor
 
 | 制御方式 | 説明 |
@@ -120,11 +189,89 @@ AppArmorはパス名ベースでプロセスをサンドボックス化し、脆
 |---|---|
 | **Port 4242** | デフォルトの22番を避け、自動スキャン攻撃を回避 |
 | **Protocol 2** | 現在の標準。脆弱なProtocol 1は使用しない |
-| **PermitRootLogin no** | root直接ログインを禁止 |
+| **PermitRootLogin no** | root直接ログインを禁止。管理者権限への直接アクセスを制限 |
+
+#### 確認方法
+
+```bash
+# サービスの動作確認
+sudo systemctl status ssh
+
+# 設定ファイルの確認
+sudo nano /etc/ssh/sshd_config
+# → Port 4242, PermitRootLogin no を確認
+```
+
+#### 外部からの接続
+
+```bash
+# ホストマシンから接続
+ssh <username>@<ip_address> -p 4242
+
+# VMのIPアドレスを確認
+hostname -I
+```
 
 ### UFW (Uncomplicated Firewall)
 
 Stateful Inspectionにより、パケットの中身だけでなく通信の状態を管理。許可された通信の戻りパケットを自動的に通す。
+
+#### 確認方法
+
+```bash
+# インストール確認
+dpkg -l | grep ufw
+
+# ステータス表示（番号付き）
+sudo ufw status numbered
+```
+
+#### ルールの追加と削除
+
+```bash
+# ポートを許可
+sudo ufw allow 8080
+
+# ステータスで追加を確認
+sudo ufw status numbered
+
+# ルールを削除（番号で指定）
+sudo ufw delete <rule_number>
+```
+
+---
+
+## Monitoring Script
+
+### 概要
+
+`monitoring.sh` は cron によって定期実行され、`wall` コマンドで全ユーザーにシステム情報を表示する。
+
+### 確認方法
+
+```bash
+# スクリプトの存在確認
+ls /usr/local/bin/monitoring.sh
+
+# cronの設定確認
+sudo crontab -u root -l
+
+# 手動実行
+sudo /usr/local/bin/monitoring.sh
+```
+
+### 実行頻度の変更
+
+```bash
+sudo crontab -u root -e
+```
+
+| 設定 | 実行頻度 |
+|---|---|
+| `*/10 * * * *` | 10分ごと（デフォルト） |
+| `*/1 * * * *` | 1分ごと |
+
+変更後、指定した間隔でシステム情報が `wall` コマンドで全端末に表示される。
 
 ---
 
@@ -259,7 +406,7 @@ sudo hostnamectl set-hostname <new_hostname>   # 変更
 
 ---
 
-## Usage
+## Instructions
 
 ### Prerequisites
 
