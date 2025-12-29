@@ -8,115 +8,191 @@ Born2beRootは、仮想化（Virtualization）の基礎を学び、自分自身�
 
 VirtualBoxを使用して、グラフィカルインターフェースを持たない最小構成のオペレーティングシステム（Debian）をインストールし、厳格なセキュリティルールやシステム管理設定を実装します。
 
-このプロジェクトの目的は、以下を通じてシステム管理の基本概念を理解することにあります：
-
+**学習目標:**
 - LVMによるパーティショニング
 - sudoの設定
 - SSHサービス
-- UFW/firewalldによるファイアウォール
+- UFWによるファイアウォール
 - 強力なパスワードポリシー
-- システム状態を監視するスクリプトの作成
+- システム監視スクリプトの作成
 
 ---
 
-### 1. Operating System: Debian vs Rocky Linux
+## Technical Background
 
-本プロジェクトでは **Debian** を選択しました。
+### Virtualization
 
-| OS | メリット | デメリット |
+| 用語 | 説明 |
+|---|---|
+| **Hypervisor** | 物理ハードウェアと仮想マシンの間でリソースを仲介するソフトウェア層 |
+| **Type-2 (ホスト型)** | VirtualBoxがこれに該当。既存のOS上で動作するため導入が容易 |
+| **Type-1 (ベアメタル型)** | ESXiやXen。ハードウェア上で直接動作し、オーバーヘッドが少ない |
+| **Kernel** | OSの中核。ハードウェアを管理し、アプリケーションに抽象化されたリソースを提供 |
+
+### OS Selection
+
+本プロジェクトでは **Debian** を選択。
+
+| OS | パッケージ形式 | 特徴 |
 |---|---|---|
-| Debian | 安定性が高く、パッケージ管理(APT)が直感的。初心者向けのリソースが豊富。 | 最新機能の導入がRockyに比べて遅い場合がある。 |
-| Rocky Linux | RHEL互換であり、エンタープライズ環境に近い。SELinuxが標準。 | 設定がDebianより複雑で、初心者には難易度が高い。 |
-
-### 2. Security & Tools Comparison
-
-#### AppArmor vs SELinux
-
-| ツール | 説明 |
-|---|---|
-| AppArmor (Debian採用) | パスベースのアクセス制御。設定が比較的容易で人間が読みやすい。 |
-| SELinux (Rocky採用) | ラベルベースのアクセス制御。より細粒度な制御が可能だが、学習曲線が急。 |
-
-#### UFW vs firewalld
-
-| ツール | 説明 |
-|---|---|
-| UFW (Debian採用) | "Uncomplicated Firewall"の略。シンプルなコマンドで直感的にポート開放が可能。 |
-| firewalld (Rocky採用) | ゾーンベースの管理が可能で、動的なルール変更に強い。 |
-
-#### VirtualBox vs UTM
-
-| ツール | 説明 |
-|---|---|
-| VirtualBox | 広く普及しているクロスプラットフォームの仮想化ソフト。Intel MacやWindowsで安定。 |
-| UTM | Apple Silicon (M1/M2/M3) Macに最適化された軽量な仮想化ソフト。 |
-
-### 3. Design Choices
-
-- **Partitioning**: LVM（Logical Volume Manager）を使用し、将来の拡張性を確保。
-- **Security**: SSHポートをデフォルトの22から4242に変更し、rootログインを禁止。
-- **Sudo**: すべての入出力をログに記録（`/var/log/sudo/`）し、TTYモードを強制。
+| **Debian** | `.deb` / `apt` | コミュニティ駆動。安定性重視。Debian Policyが厳格 |
+| **Rocky Linux** | `.rpm` / `dnf` | RHEL互換。企業向けサポートを重視した設計 |
 
 ---
 
-## Instructions
+## LVM & LUKS
+
+### LVM (Logical Volume Manager)
+
+```
+┌─────────────────────────────────────────────┐
+│              LV (Logical Volume)            │  ← OSから見える仮想パーティション
+├─────────────────────────────────────────────┤
+│              VG (Volume Group)              │  ← PVを束ねたストレージプール
+├──────────────────┬──────────────────────────┤
+│  PV (Physical    │  PV (Physical Volume)    │  ← 実際のディスクパーティション
+│  Volume)         │                          │
+└──────────────────┴──────────────────────────┘
+```
+
+| 層 | 説明 |
+|---|---|
+| **PV** | 実際のディスクパーティション（`/dev/sda3`など） |
+| **VG** | PVを束ねた仮想的なストレージプール |
+| **LV** | VGから切り出された仮想パーティション。オンラインで拡張可能 |
+
+### LUKS (Linux Unified Key Setup)
+
+| 項目 | 説明 |
+|---|---|
+| **仕組み** | ディスク上のデータをセクタ単位で暗号化 |
+| **dm-crypt** | カーネル内のサブシステム。起動時に暗号化キーを解除し、透過的なアクセスを提供 |
+
+---
+
+## Security Configuration
+
+### Sudo
+
+| 設定 | 目的 |
+|---|---|
+| **requiretty** | TTYセッションなしでのsudo実行を遮断 |
+| **secure_path** | 信頼できるパスのみを使用させ、悪意あるバイナリの実行を防止 |
+| **logfile** | すべての入出力を `/var/log/sudo/` に記録 |
+
+### PAM (Pluggable Authentication Modules)
+
+Linuxにおける認証の共通基盤。パスワードポリシー（`libpam-pwquality`）はPAMの一環。
+
+| 用語 | 説明 |
+|---|---|
+| **Entropy** | パスワードの予測不可能性 |
+| **Dictionary Attack** | 既知の単語リストを用いた総当たり攻撃 |
+
+### AppArmor
+
+| 制御方式 | 説明 |
+|---|---|
+| **MAC** | Mandatory Access Control。管理者が決めたルールに従い、rootでも制限を受ける |
+| **DAC** | Discretionary Access Control。通常の権限（`chmod`など） |
+
+AppArmorはパス名ベースでプロセスをサンドボックス化し、脆弱性があってもシステム全体への被害拡大を防止する。
+
+---
+
+## Network Configuration
+
+### SSH
+
+| 設定 | 効果 |
+|---|---|
+| **Port 4242** | デフォルトの22番を避け、自動スキャン攻撃を回避 |
+| **Protocol 2** | 現在の標準。脆弱なProtocol 1は使用しない |
+| **PermitRootLogin no** | root直接ログインを禁止 |
+
+### UFW (Uncomplicated Firewall)
+
+Stateful Inspectionにより、パケットの中身だけでなく通信の状態を管理。許可された通信の戻りパケットを自動的に通す。
+
+---
+
+## Glossary
+
+| 用語 | 説明 |
+|---|---|
+| **Aptitude** | `apt`のハイレベルなフロントエンド。複雑な依存関係の解決に優れる |
+| **Cron** | 時系列ベースのジョブスケジューラ |
+| **Wall** | "Write All"。全ユーザーにメッセージを表示 |
+| **Snapshot** | 特定時点のファイルシステムやVMの状態を保存したもの |
+| **FHS** | Filesystem Hierarchy Standard。Linuxのディレクトリ構造の配置基準 |
+
+---
+
+## Command Reference
+
+### System
+
+```bash
+uname -a          # カーネルバージョン、アーキテクチャ、OS名
+hostnamectl       # ホスト名、OSの詳細、仮想化の種類
+uptime            # 稼働時間、ログインユーザー数、ロードアベレージ
+```
+
+### Storage
+
+```bash
+lsblk -f          # パーティション、LVM、ファイルシステム
+pvs / vgs / lvs   # LVM各レイヤーの詳細
+df -Th            # マウントされているディスクの容量
+```
+
+### User Management
+
+```bash
+id [user]                # UID, GID, 所属グループ
+getent group [group]     # グループの所属メンバー
+sudo adduser <username>  # ユーザー作成
+sudo addgroup <group>    # グループ作成
+```
+
+### Network & Security
+
+```bash
+ss -tunlp                # リスニングポート、プロトコル、PID
+ufw status numbered      # ファイアウォールルール
+aa-status                # AppArmorの状態
+journalctl -u ssh        # SSHサーバーのログ
+```
+
+### Hostname
+
+```bash
+hostnamectl                                    # 確認
+sudo hostnamectl set-hostname <new_hostname>   # 変更
+```
+
+---
+
+## Usage
 
 ### Prerequisites
 
-- VirtualBox または UTM がインストールされていること。
-- VMのディスクシグネチャ（`.vdi` または `.qcow2`）が `signature.txt` と一致していること。
+- VirtualBox または UTM
+- VMのディスクシグネチャが `signature.txt` と一致していること
 
-### How to Run
-
-1. VirtualBoxを起動し、対象のVMを選択して「起動」をクリック。
-2. ログイン画面が表示されたら、作成したユーザー名またはrootでログイン。
-3. SSH経由で接続する場合（ホストマシンのターミナルから）:
+### Run
 
 ```bash
 ssh <user>@localhost -p 4242
 ```
 
----
+### Monitoring Script
 
-## Reviewer's Manual (Evaluation Guide)
-
-レビュー時に必要となる操作コマンドとチェック項目をまとめています。
-
-### 1. サービスの確認
-
-| 項目 | コマンド |
+| 項目 | 値 |
 |---|---|
-| AppArmorの状態確認 | `sudo aa-status` |
-| UFWの状態確認 | `sudo ufw status` |
-| SSHポートの確認 | `ss -tunlp` (4242ポートが開いているか確認) |
-
-### 2. ユーザー・グループ管理 (レビュー中に指示される操作)
-
-| 操作 | コマンド |
-|---|---|
-| 新規ユーザー作成 | `sudo adduser <new_username>` |
-| 新規グループ作成 | `sudo addgroup <group_name>` |
-| ユーザーをグループに追加 | `sudo adduser <username> <group_name>` |
-| パスワードポリシーの確認 | `/etc/login.defs` および `/etc/pam.d/common-password` を確認 |
-
-### 3. ホスト名の変更
-
-| 操作 | コマンド |
-|---|---|
-| 現在のホスト名確認 | `hostnamectl` |
-| 一時的な変更 | `sudo hostnamectl set-hostname <new_hostname>` |
-
-> 変更後は再起動またはシェルを再起動して反映を確認してください。
-
-### 4. Monitoring Script
-
-`monitoring.sh` は cron によって10分おきに実行されます。
-
-| 項目 | パス/コマンド |
-|---|---|
-| スクリプトの場所 | `/usr/local/bin/monitoring.sh` |
-| cronの設定確認 | `sudo crontab -u root -e` |
-| 即時実行 | `sudo /usr/local/bin/monitoring.sh` |
+| Location | `/usr/local/bin/monitoring.sh` |
+| Cron | `sudo crontab -u root -e` |
+| Manual run | `sudo /usr/local/bin/monitoring.sh` |
 
 ---
 
@@ -129,8 +205,6 @@ ssh <user>@localhost -p 4242
 ---
 
 ## AI Usage Disclosure
-
-本プロジェクトにおけるAI（ChatGPT/Gemini等）の利用状況は以下の通りです：
 
 | 項目 | 内容 |
 |---|---|
