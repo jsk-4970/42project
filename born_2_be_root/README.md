@@ -128,6 +128,80 @@ Stateful Inspectionにより、パケットの中身だけでなく通信の状�
 
 ---
 
+## User & Group Management
+
+### グループ所属の確認
+
+ユーザーが `sudo` および `user42` グループに属しているか確認する。
+
+```bash
+getent group sudo
+getent group user42
+```
+
+> `getent` はシステムデータベース（グループ情報等）からエントリを取得するコマンド。
+> `groups [username]` でも確認可能。
+
+### ユーザーの作成
+
+```bash
+sudo adduser <new_username>
+```
+
+パスワード設定時、設定したパスワードポリシー（10文字以上、大文字・小文字・数字を含む等）が適用される。
+
+### グループの作成と割り当て
+
+```bash
+# グループ作成
+sudo groupadd <group_name>
+
+# ユーザーをグループに追加
+sudo usermod -aG <group_name> <username>
+```
+
+| オプション | 説明 |
+|---|---|
+| `-a` | append。既存のグループから削除せずに追加 |
+| `-G` | 追加するグループを指定 |
+
+> `-a` を付けないと、そのユーザーが現在所属している他のグループ（sudoなど）から外れてしまう。
+
+### 確認
+
+```bash
+# グループ所属確認
+getent group <group_name>
+
+# パスワード期限の確認
+sudo chage -l <username>
+```
+
+`chage -l` の出力例：
+- パスワードの最大有効期限: 30日
+- 変更までの最小日数: 2日
+- 警告: 7日前から表示
+
+### ホスト名の変更
+
+```bash
+# 現在のホスト名を確認
+hostnamectl
+
+# ホスト名を変更
+sudo hostnamectl set-hostname <new_hostname>
+
+# /etc/hosts を編集して古いホスト名を新しいものに書き換え
+sudo nano /etc/hosts
+
+# 再起動して反映
+sudo reboot
+```
+
+再起動後、ログインプロンプトのホスト名が変わっていることを確認。
+
+---
+
 ## Glossary
 
 | 用語 | 説明 |
