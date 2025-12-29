@@ -98,6 +98,18 @@ Linuxにおける認証の共通基盤。パスワードポリシー（`libpam-p
 
 AppArmorはパス名ベースでプロセスをサンドボックス化し、脆弱性があってもシステム全体への被害拡大を防止する。
 
+### Configuration Files
+
+| カテゴリ | パス | 確認内容 |
+|---|---|---|
+| Sudo設定 | `/etc/sudoers.d/sudo_config` | パスワード試行回数、カスタムエラー等 |
+| Sudoログ | `/var/log/sudo/` | 実行履歴（sudo.logなど）の有無 |
+| パスワード強度 | `/etc/pam.d/common-password` | `minlen=10` や `ucredit=-1` などの設定 |
+| パスワード期限 | `/etc/login.defs` | `PASS_MAX_DAYS 30` などの設定 |
+| SSH設定 | `/etc/ssh/sshd_config` | ポート番号（4242）の設定 |
+| ホスト名 | `/etc/hosts` | ホスト名が正しく設定されているか |
+| 自作スクリプト | `/usr/local/bin/monitoring.sh` | 10分おきに表示される情報のコード |
+
 ---
 
 ## Network Configuration
