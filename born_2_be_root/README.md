@@ -429,6 +429,106 @@ ssh <user>@localhost -p 4242
 
 ---
 
+## Bonus Part Guide
+
+このセクションでは、Born2beRootプロジェクトにおけるボーナスパートの構成内容と、その検証方法について解説します。
+
+### 📋 ボーナスパートの内容
+
+ボーナスパートでは、以下の3つの項目をすべて完璧に実装する必要があります。
+
+| 項目 | 説明 |
+|---|---|
+| **高度なパーティショニング** | LVMを利用し、暗号化されたボリューム内に少なくとも2つの追加パーティションを作成する |
+| **WordPressのセットアップ** | Lighttpd, MariaDB, PHP を使用して、実際に動作するWordPressサイトを構築する |
+| **追加サービスの導入** | 必須要件にはない独自のサービスを導入する（例: Fail2ban, FTP など） |
+
+### 1. 💽 高度なパーティショニング (LVM)
+
+必須課題の構成に加え、さらに論理ボリューム（LV）を分割して管理します。
+
+#### 検証コマンド
+
+```bash
+# 現在のパーティション構造を確認
+lsblk
+```
+
+#### 構成例
+
+- `/` (Root)
+- `/home`
+- `/var/log` (追加)
+- `/tmp` (追加)
+
+など、複数のマウントポイントがLVM配下にあることを示します。
+
+### 2. 🌐 WordPress サービス構成
+
+軽量な Lighttpd サーバー上でWordPressを動作させます。
+
+#### スタック構成
+
+| コンポーネント | 使用ソフトウェア |
+|---|---|
+| Web Server | lighttpd |
+| Database | MariaDB |
+| Language | PHP (php-fpm / php-cgi) |
+
+#### 検証方法
+
+ホストマシンのブラウザから以下のURLにアクセスできることを確認します。
+（ポートフォワーディングの設定が必要です。例：ポート 80 または指定したポート）
+
+```
+http://<VM_IP_OR_LOCALHOST>:<PORT>/
+```
+
+#### サービス状態の確認コマンド
+
+```bash
+sudo systemctl status lighttpd
+sudo systemctl status mariadb
+sudo systemctl status php*-fpm
+```
+
+### 3. 🛡️ 追加サービス (Fail2ban)
+
+セキュリティ強化のため、Fail2ban を導入して不正なSSHアクセスを自動的にブロックします。
+
+#### Fail2ban の役割
+
+ログファイルを監視し、設定した回数以上のログイン失敗があったIPアドレスを、一定時間ファイアウォール（UFW）で拒否します。
+
+#### 検証コマンド
+
+```bash
+# サービスの状態確認
+sudo systemctl status fail2ban
+
+# 現在のステータスとブロックされているIPの確認
+sudo fail2ban-client status sshd
+```
+
+### ⚙️ 評価時のチェックリスト
+
+| チェック項目 | 確認内容 |
+|---|---|
+| LVM | `lsblk` コマンドで、複数のパーティションが動的に管理されているか？ |
+| Web Server | lighttpd が正常に動作し、WordPressの初期設定画面（または記事）が表示されるか？ |
+| Database | WordPressがMariaDBに正常に接続できているか？ |
+| Bonus Service | 導入したサービス（Fail2ban等）の目的を説明し、動作していることを証明できるか？ |
+| UFW | WordPress用（HTTP）および追加サービス用のポートが適切に開放されているか？ |
+
+### 💡 注意事項
+
+| 項目 | 説明 |
+|---|---|
+| **完全性** | 必須課題（Mandatory Part）が1つでも不合格の場合、ボーナスパートは採点されません |
+| **説明** | 評価者に対して、「なぜそのパーティション構成にしたのか」「Fail2banがどのように動作するのか」を論理的に説明できるように準備してください |
+
+---
+
 ## Resources
 
 - [Debian Documentation](https://www.debian.org/doc/)
