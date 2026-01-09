@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:41:50 by jyamada           #+#    #+#             */
-/*   Updated: 2025/12/26 15:26:05 by aburi            ###   ########.fr       */
+/*   Updated: 2026/01/09 18:22:58 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 
 typedef struct s_stack
 {
-	int	*data;
-	int	size;
-	int	capacity;
+	int				*value;
+	int				index;
+	struct s_stack	*next;
 }	t_stack;
 
 /* main.c */
+t_stack	stack_new(int value);
 int		is_valid_int(char *str);
 char	*validate_args(char **av);
 

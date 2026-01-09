@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/09 15:42:47 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/09 20:20:50 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,44 @@ char	*validate(char **av)
 
 }
 
+//function to make new_stack and fill it
+t_stack	*make_new_stack(int value)
+{
+	t_stack	*new;
+
+	new = (t_stack*)malloc(sizeof(t_stack));
+	if (new == NULL)
+		return (NULL);
+	new->next = NULL;
+	new->value = value;
+	return (new);
+}
+
+//function to find the last stack
+t_stack	*find_last_stack(t_stack *list)
+{
+	if (list == NULL)
+		return (list);
+	while (list->next != NULL)
+		list = list->next;
+	return (list);
+}
+
+//function to add node to the last list
+//its gonna be complicate to free when something fail
+void	stack_add_back(t_stack **stack, t_stack *new)
+{
+	t_stack	*last_list;
+
+	if (*stack == NULL)
+		*stack = new;
+	else
+	{
+		last_list = find_last_stack(*stack);
+		last_list->next = new;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	char	*args;
@@ -58,6 +96,7 @@ int	main(int ac, char **av)
 		args = validate(av);
 	if (!args)
 		return (1, write(2, "Error\n", 6));
+	
 	push_swap(args);
 	free_args(args);
 	return (0);
