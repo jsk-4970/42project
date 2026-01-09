@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/05 14:45:35 by aburi            ###   ########.fr       */
+/*   Updated: 2026/01/09 15:42:47 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		is_valid_int(char *str)
 	return (0);
 }
 
-char	*validate_args(char **av)
+char	*validate(char **av)
 {
 	char	*ret;
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 		args = split_and_validate(av[1]);
 	else
-		args = 
+		args = validate(av);
 	if (!args)
 		return (1, write(2, "Error\n", 6));
 	push_swap(args);
