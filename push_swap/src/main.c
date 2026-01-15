@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 19:15:19 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 19:47:18 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,31 @@ int		is_valid_number(char *num)
 	return (1);
 }
 
+//func to return 1, if all of the nodes are differnt
+int	is_diff_num(t_stack *list)
+{
+	int		n;
+	t_stack	*current;
+	t_stack	*check;
+
+	if (list == NULL)
+		return (1);
+	current = list;
+	while (current)
+	{
+		n = current->value;
+		check = current->next;
+		while (check)
+		{
+			if (n == check->value)
+				return (0);
+			check = check->next;		
+		}
+		current = current->next;
+	}
+	return (1);
+}
+
 //function to make stack from argv
 //if it fail to init, return 0
 //success to init, return 0
@@ -116,31 +141,8 @@ int	init_stack_a(t_stack **a, char **argv)
 		stack_add_back(a, make_new_stack((int)value));
 		argv++;
 	}
-	return (1);
-}
-
-//func to return 1, if all of the nodes are differnt
-int	is_diff_num(t_stack *list)
-{
-	int		n;
-	t_stack	*current;
-	t_stack	*check;
-
-	if (list == NULL)
-		return (1);
-	current = list;
-	while (current)
-	{
-		n = current->value;
-		check = list;
-		while (check)
-		{
-			if (n == check->value)
-				return (0);
-			check = current->next;		
-		}
-		current = list->next;
-	}
+	if (!is_diff_num(*a))
+		return (free_stack(*a), 0);
 	return (1);
 }
 
