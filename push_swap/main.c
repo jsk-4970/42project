@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/09 20:20:50 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 10:48:42 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,24 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 	}
 }
 
+//function to make stack from argv
+//if it fail to init, return -1
+//success to init, return 1
+int	init_stack_a(t_stack **a, char **argv)
+{
+	int		value;
+	argv++;
+	while (*argv)
+	{
+		if (is_valid_number(*argv))
+			return (-1);
+		value = ft_atol(*argv);
+		stack_add_back(a, make_new_stack(value));
+		argv++;
+	}
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	char	*args;
@@ -96,6 +114,7 @@ int	main(int ac, char **av)
 		args = validate(av);
 	if (!args)
 		return (1, write(2, "Error\n", 6));
+	init_stack_a(a, argv);
 	
 	push_swap(args);
 	free_args(args);
