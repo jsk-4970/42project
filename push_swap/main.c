@@ -6,11 +6,12 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 10:48:42 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 12:14:50 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
+#include <limits.h>
 
 //if str is not int, return 0
 int		is_valid_int(char *str)
@@ -85,18 +86,20 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 }
 
 //function to make stack from argv
-//if it fail to init, return -1
-//success to init, return 1
+//if it fail to init, return 0
+//success to init, return 0
 int	init_stack_a(t_stack **a, char **argv)
 {
-	int		value;
+	long	value;
 	argv++;
 	while (*argv)
 	{
 		if (is_valid_number(*argv))
-			return (-1);
+			return (0);
 		value = ft_atol(*argv);
-		stack_add_back(a, make_new_stack(value));
+		if (value > INT_MAX || value < INT_MIN)
+			return (free(a), 0);
+		stack_add_back(a, make_new_stack((int)value));
 		argv++;
 	}
 	return (1);
