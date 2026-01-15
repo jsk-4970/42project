@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 13:26:07 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 14:15:32 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,25 +120,32 @@ int	init_stack_a(t_stack **a, char **argv)
 	return (1);
 }
 
+//as a validation, it has different ways using split or not 
+//then to free collectlly it should make a flag whether using split
 int	main(int ac, char **av)
 {
 	char	**args;
 	t_stack	*a;
 	t_stack	*b;
+	int		flag_to_free;
 
 	a = NULL;
 	b = NULL;
+	flag_to_free = 0;
 	if (ac <= 1)
 		return (0);
 	if (ac == 2)
-		ft_split(av[1], ' ');
+		args = ft_split(av[1], ' ');
 	else
-
-		if (!args)
-		return (1, write(2, "Error\n", 6));
-	if (!init_stack_a(a, av))
-		return (0);
-	push_swap();
-	free_args();
+	{
+		args = av + 1;
+		flag_to_free = 1;
+	}
+	if (!args)
+		return (write(2, "Error\n", 6), 1);
+	if (!init_stack_a(&a, args))
+		return (free_args(args, flag_to_free));
+	push_swap(a, b);
+	free_args(args, flag_to_free);
 	return (0);
 }
