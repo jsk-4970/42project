@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 19:47:18 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 19:49:40 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int	main(int ac, char **av)
 		return (write(2, "Error\n", 6), 1);
 	if (!init_stack_a(&a, args))
 		return (free_args(args, flag_to_free), 1);
-	push_swap(a, b);
+	push_swap(&a, &b);
 	free_args(args, flag_to_free);
 	return (0);
 }
