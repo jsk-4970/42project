@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:41:50 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/09 18:22:58 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 12:41:50 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# include "../libft/libft.h"
+# include "../printf/ft_printf.h"
 
 typedef struct s_stack
 {
