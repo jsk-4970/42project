@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:41:50 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 12:41:50 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 18:18:48 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct s_stack
 {
-	int				*value;
+	int				value;
 	int				index;
 	struct s_stack	*next;
 }	t_stack;

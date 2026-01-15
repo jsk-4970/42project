@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 14:15:32 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/15 19:15:19 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_stack	*make_new_stack(int value)
 	if (new == NULL)
 		return (NULL);
 	new->next = NULL;
-	new->value = &value;
+	new->value = value;
 	return (new);
 }
 
@@ -106,7 +106,6 @@ int		is_valid_number(char *num)
 int	init_stack_a(t_stack **a, char **argv)
 {
 	long	value;
-	argv++;
 	while (*argv)
 	{
 		if (!is_valid_number(*argv))
@@ -116,6 +115,31 @@ int	init_stack_a(t_stack **a, char **argv)
 			return (free_stack(*a), 0);
 		stack_add_back(a, make_new_stack((int)value));
 		argv++;
+	}
+	return (1);
+}
+
+//func to return 1, if all of the nodes are differnt
+int	is_diff_num(t_stack *list)
+{
+	int		n;
+	t_stack	*current;
+	t_stack	*check;
+
+	if (list == NULL)
+		return (1);
+	current = list;
+	while (current)
+	{
+		n = current->value;
+		check = list;
+		while (check)
+		{
+			if (n == check->value)
+				return (0);
+			check = current->next;		
+		}
+		current = list->next;
 	}
 	return (1);
 }
@@ -133,18 +157,18 @@ int	main(int ac, char **av)
 	b = NULL;
 	flag_to_free = 0;
 	if (ac <= 1)
-		return (0);
+		return (1);
 	if (ac == 2)
-		args = ft_split(av[1], ' ');
-	else
 	{
-		args = av + 1;
+		args = ft_split(av[1], ' ');
 		flag_to_free = 1;
 	}
+	else
+		args = av + 1;
 	if (!args)
 		return (write(2, "Error\n", 6), 1);
 	if (!init_stack_a(&a, args))
-		return (free_args(args, flag_to_free));
+		return (free_args(args, flag_to_free), 1);
 	push_swap(a, b);
 	free_args(args, flag_to_free);
 	return (0);
