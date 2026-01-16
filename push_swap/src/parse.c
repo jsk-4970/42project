@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:50:22 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 20:04:51 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/16 12:27:31 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,34 @@ void	sb(t_stack **b)
 	(*b)->value = (*b)->next->value;
 	(*b)->next->value = tmp;
 	write(1, "sb\n", 3);
+}
+
+void	push(t_stack **from, t_stack **to)
+{
+	t_stack	*tmp;
+
+	if (!from || !*from)
+		return ;
+	tmp = *from;
+	*from = (*from)->next;
+	tmp->next = *to;
+	to = &tmp->next;
+}
+		return ;
+	tmp = *from;
+	*from = (*from)->next;
+	tmp->next = *to;
+	*to = tmp;
+}
+
+void	pa(t_stack **a, t_stack **b)
+{
+	push(b, a);
+	write(1, "pa\n", 3);
+}
+
+void	pb(t_stack **a, t_stack **b)
+{
+	push(a, b);
+	write(1, "pb\n", 3);
 }
