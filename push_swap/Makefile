@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/12/26 00:00:00 by jyamada           #+#    #+#              #
-#    Updated: 2025/12/26 00:00:00 by jyamada          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME		= push_swap
 
 # Compiler
@@ -26,10 +14,12 @@ LIBFTDIR	= libft
 LIBFT		= $(LIBFTDIR)/libft.a
 
 # Source files
-SRCS		= main.c \
+SRCS		= $(SRCDIR)/main.c \
 			  $(SRCDIR)/parse.c \
 			  $(SRCDIR)/sort.c \
-			  $(SRCDIR)/operation.c \
+			  $(SRCDIR)/operation1.c \
+			  $(SRCDIR)/operation2.c \
+			  $(SRCDIR)/operation3.c \
 			  $(SRCDIR)/utils.c
 
 # Object files

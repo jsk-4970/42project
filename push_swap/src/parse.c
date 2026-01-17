@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:50:22 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/16 12:27:31 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/17 13:01:54 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,9 @@ void	push(t_stack **from, t_stack **to)
 	tmp = *from;
 	*from = (*from)->next;
 	tmp->next = *to;
-	to = &tmp->next;
-}
-		return ;
-	tmp = *from;
-	*from = (*from)->next;
-	tmp->next = *to;
 	*to = tmp;
 }
-
+	
 void	pa(t_stack **a, t_stack **b)
 {
 	push(b, a);

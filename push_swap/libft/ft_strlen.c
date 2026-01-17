@@ -6,13 +6,13 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:29:53 by jyamada           #+#    #+#             */
-/*   Updated: 2025/11/08 12:19:47 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/17 12:46:01 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+static size_t	ft_strlen(const char *str)
 {
 	size_t	n;
 	size_t	len;
