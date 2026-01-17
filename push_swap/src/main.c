@@ -6,45 +6,11 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/15 19:49:40 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/17 17:06:38 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-//if str is not int, return 0
-//int		is_valid_int(char *str)
-//{
-//	int		len;
-//	int		is_minus;
-//
-//	is_minus = 0;
-//	if (*str == '-' || *str == '+')
-//	{
-//		if (*str == '-')
-//			is_minus = 1;
-//		str++;
-//	}
-//	if (!is_all_digits(str))
-//		return (0);
-//	while (*str == '0' && *(str + 1))
-//		str++;
-//	len = ft_strlen(str);
-//	if (len > 10)
-//		return (0);
-//	if (is_minus)
-//		return (ft_strncmp(str, "2147483648", len) <= 0);
-//	else
-//		return (ft_strncmp(str, "2147483648", len) <= 0);
-//	return (0);
-//}
-//
-//char	*validate(char **av)
-//{
-//	char	*ret;
-//
-//
-//}
 
 //function to make new_stack and fill it
 t_stack	*make_new_stack(int value)

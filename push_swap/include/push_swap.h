@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:41:50 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/17 13:31:40 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/17 16:36:53 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# include "../libft/libft.h"
-# include "../printf/ft_printf.h"
+//# include "../libft/libft.h"
+//# include "../printf/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -72,7 +72,9 @@ char	*ft_strchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s);
 char	**ft_split(char const *s, char c);
-int		ft_atoi(const char *nptr);
+long	ft_atol(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *s);
 
 #endif
