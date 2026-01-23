@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:36:34 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 13:23:31 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 13:38:13 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	push_swap(t_stack **a, t_stack **b)
 	int	size;
 	int	i;
 
-	size = re_rank(a);
+	size = re_rank(a) + 1;
 	i = 0;
 	while (i < size)
 	{
