@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 17:01:11 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 15:10:10 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 15:16:00 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 
 void	free_args(char **args, int flag_to_free)
 {
+	char	**tmp;
 	if (flag_to_free != 1)
 		return ;
+	tmp = args;
 	while (*args)
 	{
 		free(*args);
 		args++;
 	}
-	free(args);
+	free(tmp);
 }
 
 void	free_stack(t_stack *a)
@@ -31,11 +33,10 @@ void	free_stack(t_stack *a)
 
 	if (a == NULL)
 		return ;
-	while (a->next)
+	while (a != NULL)
 	{
 		tmp = a->next;
 		free(a);
 		a = tmp;
 	}
 }
-
