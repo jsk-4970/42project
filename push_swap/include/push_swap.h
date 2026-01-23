@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:41:50 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/17 20:49:41 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 13:26:07 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*split_and_validate(char *str);
 /* sort.c */
 void	push_swap(t_stack **a, t_stack **b);
 int		re_rank(t_stack **a);
-void	separate(t_stack **a, t_stack **b);
+void	separate(t_stack **a, t_stack **b, int bit, int size);
 void	kick_back(t_stack **a, t_stack **b);
 
 /* operation.c - swap */
