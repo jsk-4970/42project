@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 14:36:14 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 14:40:04 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	main(int ac, char **av)
 	b = NULL;
 	flag_to_free = 0;
 	if (ac <= 1)
-		return (write(1, "Error\n", 6), 1);
+		return (write(2, "Error\n", 6), 1);
 	if (ac == 2)
 	{
 		args = ft_split(av[1], ' ');
@@ -134,9 +134,9 @@ int	main(int ac, char **av)
 	else
 		args = av + 1;
 	if (!args)
-		return (write(1, "Error\n", 6), 1);
+		return (write(2, "Error\n", 6), 1);
 	if (!init_stack_a(&a, args))
-		return (free_args(args, flag_to_free), write(1, "Error\n", 6), 1);
+		return (free_args(args, flag_to_free), write(2, "Error\n", 6), 1);
 	push_swap(&a, &b);
 	free_args(args, flag_to_free);
 	return (0);
