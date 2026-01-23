@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 15:08:03 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 15:26:48 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ t_stack	*find_last_stack(t_stack *list)
 
 //function to add node to the last list
 //its gonna be complicate to free when something fail
-void	stack_add_back(t_stack **stack, t_stack *new)
+int	stack_add_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*last_list;
 
+	if (new == NULL)
+		return (0);
 	if (*stack == NULL)
 		*stack = new;
 	else
@@ -93,7 +95,7 @@ int	is_diff_num(t_stack *list)
 
 //function to make stack from argv
 //if it fail to init, return 0
-//success to init, return 0
+//success to init, return 1
 int	init_stack_a(t_stack **a, char **args)
 {
 	long	value;
@@ -104,8 +106,8 @@ int	init_stack_a(t_stack **a, char **args)
 		value = ft_atol(*args);
 		if (value > INT_MAX || value < INT_MIN)
 			return (free_stack(*a), 0);
-		stack_add_back(a, make_new_stack((int)value));
-		if ()
+		if (stack_add_back(a, make_new_stack((int)value)) == 0)
+			return (free_stack(*a), 0);
 		args++;
 	}
 	if (!is_diff_num(*a))
@@ -125,7 +127,7 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	flag_to_free = 0;
-	if (ac <= 1)
+	if (ac <= 1 || arg[0] == NULL)
 		return (write(2, "Error\n", 6), 1);
 	if (ac == 2)
 	{
