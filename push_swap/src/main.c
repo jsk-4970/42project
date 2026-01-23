@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 15:26:48 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 15:33:48 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	stack_add_back(t_stack **stack, t_stack *new)
 		last_list = find_last_stack(*stack);
 		last_list->next = new;
 	}
+	return (1);
 }
 
 //func to return 1 if (char *)num is "num"
@@ -127,7 +128,7 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	flag_to_free = 0;
-	if (ac <= 1 || arg[0] == NULL)
+	if (ac <= 1)
 		return (write(2, "Error\n", 6), 1);
 	if (ac == 2)
 	{
@@ -136,11 +137,12 @@ int	main(int ac, char **av)
 	}
 	else
 		args = av + 1;
-	if (!args)
+	if (!args || !args[0])
 		return (write(2, "Error\n", 6), 1);
 	if (!init_stack_a(&a, args))
 		return (free_args(args, flag_to_free), write(2, "Error\n", 6), 1);
 	push_swap(&a, &b);
+	free_stack(a);
 	free_args(args, flag_to_free);
 	return (0);
 }
