@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 16:10:30 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/17 17:05:29 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 14:34:41 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ long	ft_atol(const char *nptr)
 	}
 	return (res * sign);
 }
-
