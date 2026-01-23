@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:36:34 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 12:25:14 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 12:34:12 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int		re_rank(t_stack **a)
 
 	ret = 0;
 	current = *a;
-	while ((current->next)
+	while (current)
 	{
 		i = 0;
 		tmp = *a;
-		while (tmp->next)
+		while (tmp)
 		{
 			if (tmp->value < (current)->value)
 				i++;
@@ -39,20 +39,21 @@ int		re_rank(t_stack **a)
 	return (ret);
 }
 
-void	separate(t_stack **a, t_stack **b)
+void	separate(t_stack **a, t_stack **b, int fini)
 {
-	while ((*a)->next)
+	while (*a && 0 < fini)
 	{
 		if ((*a)->index % 2 == 0)
 			pb(a, b);
 		else
 			ra(a);
+		fini--;
 	}
 }
 
 void	kick_back(t_stack **a, t_stack **b)
 {
-	while ((*b)->next)
+	while (b)
 		pa(a, b);
 }
 
@@ -65,7 +66,7 @@ void	push_swap(t_stack **a, t_stack **b)
 	i = 0;
 	while (i < fini)
 	{
-		separate(a, b);
+		separate(a, b, fini);
 		kick_back(a, b);
 		i++;
 	}
