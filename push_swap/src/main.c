@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 14:40:04 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 15:08:03 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	init_stack_a(t_stack **a, char **args)
 		if (value > INT_MAX || value < INT_MIN)
 			return (free_stack(*a), 0);
 		stack_add_back(a, make_new_stack((int)value));
+		if ()
 		args++;
 	}
 	if (!is_diff_num(*a))

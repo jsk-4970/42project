@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:50:22 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/17 13:30:50 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 15:04:42 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sa(t_stack **a)
 void	sb(t_stack **b)
 {
 	int	tmp;
-	if (b == NULL || *b == NULL || (*b) == NULL)
+	if (b == NULL || *b == NULL || (*b)->next == NULL)
 		return ;
 	tmp = (*b)->value;
 	(*b)->value = (*b)->next->value;

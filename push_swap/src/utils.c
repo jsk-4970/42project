@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 16:10:30 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 14:34:41 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/23 15:04:00 by jyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int		ft_isdigit(int c)
 
 long	ft_atol(const char *nptr)
 {
-	size_t	res;
+	long	res;
 	int		len;
 	int		i;
-	size_t	sign;
+	int		sign;
 
 	len = ft_strlen(nptr);
 	res = 0;
