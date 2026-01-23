@@ -138,7 +138,7 @@ int	main(int ac, char **av)
 	else
 		args = av + 1;
 	if (!args || !args[0])
-		return (write(2, "Error\n", 6), 1);
+		return (free_args(args, flag_to_free), write(2, "Error\n", 6), 1);
 	if (!init_stack_a(&a, args))
 		return (free_args(args, flag_to_free), write(2, "Error\n", 6), 1);
 	push_swap(&a, &b);

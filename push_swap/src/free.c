@@ -16,7 +16,8 @@
 void	free_args(char **args, int flag_to_free)
 {
 	char	**tmp;
-	if (flag_to_free != 1)
+
+	if (flag_to_free != 1 || args == NULL)
 		return ;
 	tmp = args;
 	while (*args)

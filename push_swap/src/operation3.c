@@ -14,7 +14,7 @@
 
 t_stack	*find_before_last(t_stack *list)
 {
-	if (list == NULL)
+	if (list == NULL || list->next == NULL)
 		return (NULL);
 	while (list->next->next != NULL)
 		list = list->next;
