@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:36:34 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/24 15:55:40 by aburi            ###   ########.fr       */
+/*   Updated: 2026/01/24 15:57:36 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	push_swap(t_stack **a, t_stack **b)
 	int	i;
 
 	max_rank = re_rank(a);
+	if (is_sorted(a))
+		return ;
 	size = max_rank + 1;
 	if (size <= 5)
 		small_sort(a, b, size);
