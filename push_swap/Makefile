@@ -17,6 +17,7 @@ OBJDIR		= obj
 SRCS		= $(SRCDIR)/main.c \
 			  $(SRCDIR)/parse.c \
 			  $(SRCDIR)/sort.c \
+			  $(SRCDIR)/sort_small.c \
 			  $(SRCDIR)/operation1.c \
 			  $(SRCDIR)/operation2.c \
 			  $(SRCDIR)/operation3.c \
