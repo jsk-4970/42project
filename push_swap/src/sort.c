@@ -59,13 +59,13 @@ void	kick_back(t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
-int		is_sorted(t_stack **a)
+int	is_sorted(t_stack *a)
 {
-	while (*a != NULL)
+	while (a != NULL && a->next != NULL)
 	{
-		if (!((*a)->value < (*a)->next->value))
+		if (a->value > a->next->value)
 			return (0);
-		*a = (*a)->next;
+		a = a->next;
 	}
 	return (1);
 }
@@ -78,11 +78,14 @@ void	push_swap(t_stack **a, t_stack **b)
 	int	i;
 
 	max_rank = re_rank(a);
-	if (is_sorted(a))
+	if (is_sorted(*a))
 		return ;
 	size = max_rank + 1;
 	if (size <= 5)
+	{
 		small_sort(a, b, size);
+		return ;
+	}
 	max_bits = 0;
 	while ((max_rank >> max_bits) != 0)
 		max_bits++;
