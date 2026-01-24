@@ -6,7 +6,7 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:36:34 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/24 15:34:52 by aburi            ###   ########.fr       */
+/*   Updated: 2026/01/24 15:55:40 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,17 @@ void	kick_back(t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
+int		is_sorted(t_stack **a)
+{
+	while (*a != NULL)
+	{
+		if (!((*a)->value < (*a)->next->value))
+			return (0);
+		*a = (*a)->next;
+	}
+	return (1);
+}
+
 void	push_swap(t_stack **a, t_stack **b)
 {
 	int	size;
@@ -67,9 +78,9 @@ void	push_swap(t_stack **a, t_stack **b)
 	int	i;
 
 	max_rank = re_rank(a);
-	if (max_rank <= 5)
-		small_sort(a, b);
 	size = max_rank + 1;
+	if (size <= 5)
+		small_sort(a, b, size);
 	max_bits = 0;
 	while ((max_rank >> max_bits) != 0)
 		max_bits++;

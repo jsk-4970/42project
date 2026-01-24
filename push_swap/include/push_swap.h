@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:41:50 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/24 15:36:41 by aburi            ###   ########.fr       */
+/*   Updated: 2026/01/24 15:55:46 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
-void	small_sort(t_stack **a, t_stack **b);
+void	small_sort(t_stack **a, t_stack **b, int num_a);
+void	sort_3(t_stack **a, t_stack **b);
+void	sort_5(t_stack **a, t_stack **b);
 
 void	free_args(char **args, int flag_to_free);
 void	free_stack(t_stack *a);
