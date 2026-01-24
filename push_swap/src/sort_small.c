@@ -6,7 +6,7 @@
 /*   By: aburi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:24:45 by aburi             #+#    #+#             */
-/*   Updated: 2026/01/24 15:55:33 by aburi            ###   ########.fr       */
+/*   Updated: 2026/01/24 16:04:17 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,22 @@ void	small_sort(t_stack **a, t_stack **b, int num_a)
 
 void	sort_3(t_stack **a, t_stack **b)
 {
-	
+	if ((*a)->index == 1 && (*a)->next->index == 2)
+	{
+		rra(a);
+		sa(a);
+	}
+	else if ((*a)->index == 2 && (*a)->next->index == 1)
+		sa(a);
+	else if ((*a)->index == 2 && (*a)->next->index == 3)
+		rra(a);
+	else if ((*a)->index == 3 && (*a)->next->index == 1)
+		ra(a);
+	else if ((*a)->index == 3 && (*a)->next->index == 2)
+	{
+		ra(a);
+		sa(a);
+	}
 }
 
 void	sort_5(t_stack **a, t_stack **b)
