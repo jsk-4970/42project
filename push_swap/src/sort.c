@@ -6,12 +6,14 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:36:34 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 14:14:19 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/24 15:34:52 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+///Orders the number of value in a. 
+///The return value is the number of values in a.
 int		re_rank(t_stack **a)
 {
 	int		i;
@@ -65,6 +67,8 @@ void	push_swap(t_stack **a, t_stack **b)
 	int	i;
 
 	max_rank = re_rank(a);
+	if (max_rank <= 5)
+		small_sort(a, b);
 	size = max_rank + 1;
 	max_bits = 0;
 	while ((max_rank >> max_bits) != 0)

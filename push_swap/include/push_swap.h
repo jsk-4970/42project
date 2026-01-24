@@ -6,7 +6,7 @@
 /*   By: aburi <aburi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:41:50 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 15:19:34 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/24 15:36:41 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-//# include "../libft/libft.h"
-//# include "../printf/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -29,36 +27,29 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-/* main.c */
 t_stack	*find_last_stack(t_stack *list);
 
-/* parse.c */
 
-/* sort.c */
 void	push_swap(t_stack **a, t_stack **b);
 int		re_rank(t_stack **a);
 void	separate(t_stack **a, t_stack **b, int bit, int size);
 void	kick_back(t_stack **a, t_stack **b);
 
-/* operation.c - swap */
 void	sa(t_stack **a);
 void	sb(t_stack **b);
 
-/* operation.c - push */
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
 
-/* operation.c - rotate */
 void	ra(t_stack **a);
 void	rb(t_stack **b);
 void	rr(t_stack **a, t_stack **b);
 
-/* operation.c - reverse rotate */
 void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
-/* utils.c */
+void	small_sort(t_stack **a, t_stack **b);
 
 void	free_args(char **args, int flag_to_free);
 void	free_stack(t_stack *a);
