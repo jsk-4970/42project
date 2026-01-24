@@ -41,7 +41,7 @@ int		re_rank(t_stack **a)
 	return (ret);
 }
 
-void	separate(t_stack **a, t_stack **b, int bit, int size)
+static void	separate(t_stack **a, t_stack **b, int bit, int size)
 {
 	while (*a && 0 < size)
 	{
@@ -53,13 +53,13 @@ void	separate(t_stack **a, t_stack **b, int bit, int size)
 	}
 }
 
-void	kick_back(t_stack **a, t_stack **b)
+static void	kick_back(t_stack **a, t_stack **b)
 {
 	while (*b)
 		pa(a, b);
 }
 
-int	is_sorted(t_stack *a)
+static int	is_sorted(t_stack *a)
 {
 	while (a != NULL && a->next != NULL)
 	{

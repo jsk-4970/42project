@@ -32,8 +32,6 @@ t_stack	*find_last_stack(t_stack *list);
 
 void	push_swap(t_stack **a, t_stack **b);
 int		re_rank(t_stack **a);
-void	separate(t_stack **a, t_stack **b, int bit, int size);
-void	kick_back(t_stack **a, t_stack **b);
 
 void	sa(t_stack **a);
 void	sb(t_stack **b);
