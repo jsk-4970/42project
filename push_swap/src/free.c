@@ -12,7 +12,6 @@
 
 #include "../include/push_swap.h"
 
-
 void	free_args(char **args, int flag_to_free)
 {
 	char	**tmp;

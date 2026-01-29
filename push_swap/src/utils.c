@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-int		ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	if (c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v'
 		|| c == ' ')
@@ -20,7 +20,7 @@ int		ft_isspace(int c)
 	return (0);
 }
 
-int		ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if ('0' <= c && c <= '9')
 		return (1);

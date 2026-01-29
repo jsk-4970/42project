@@ -23,8 +23,8 @@ t_stack	*find_before_last(t_stack *list)
 
 void	reverse_rotate(t_stack **list)
 {
-	t_stack *last;
-	t_stack *tmp;
+	t_stack	*last;
+	t_stack	*tmp;
 
 	if (!list || !*list || !(*list)->next)
 		return ;

@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
 typedef struct s_stack
 {
 	int				value;
@@ -28,7 +27,8 @@ typedef struct s_stack
 }	t_stack;
 
 t_stack	*find_last_stack(t_stack *list);
-
+t_stack	*make_new_stack(int value);
+int		stack_add_back(t_stack **stack, t_stack *new);
 
 void	push_swap(t_stack **a, t_stack **b);
 int		re_rank(t_stack **a);

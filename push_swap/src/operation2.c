@@ -15,7 +15,7 @@
 void	rotate(t_stack **list)
 {
 	t_stack	*tmp;
-	t_stack *last;
+	t_stack	*last;
 
 	if (!list || !*list || !(*list)->next)
 		return ;
@@ -44,5 +44,3 @@ void	rr(t_stack **a, t_stack **b)
 	rotate(b);
 	write(1, "rr\n", 3);
 }
-
-

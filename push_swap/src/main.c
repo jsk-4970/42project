@@ -6,55 +6,13 @@
 /*   By: jyamada <jyamada@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:20:18 by jyamada           #+#    #+#             */
-/*   Updated: 2026/01/23 15:33:48 by jyamada          ###   ########.fr       */
+/*   Updated: 2026/01/29 00:00:00 by aburi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-//function to make new_stack and fill it
-t_stack	*make_new_stack(int value)
-{
-	t_stack	*new;
-
-	new = (t_stack*)malloc(sizeof(t_stack));
-	if (new == NULL)
-		return (NULL);
-	new->next = NULL;
-	new->value = value;
-	return (new);
-}
-
-//function to find the last stack
-t_stack	*find_last_stack(t_stack *list)
-{
-	if (list == NULL)
-		return (list);
-	while (list->next != NULL)
-		list = list->next;
-	return (list);
-}
-
-//function to add node to the last list
-//its gonna be complicate to free when something fail
-int	stack_add_back(t_stack **stack, t_stack *new)
-{
-	t_stack	*last_list;
-
-	if (new == NULL)
-		return (0);
-	if (*stack == NULL)
-		*stack = new;
-	else
-	{
-		last_list = find_last_stack(*stack);
-		last_list->next = new;
-	}
-	return (1);
-}
-
-//func to return 1 if (char *)num is "num"
-int		is_valid_number(char *num)
+static int	is_valid_number(char *num)
 {
 	if (*num == '+' || *num == '-')
 		num++;
@@ -69,8 +27,7 @@ int		is_valid_number(char *num)
 	return (1);
 }
 
-//func to return 1, if all of the nodes are differnt
-int	is_diff_num(t_stack *list)
+static int	is_diff_num(t_stack *list)
 {
 	int		n;
 	t_stack	*current;
@@ -87,19 +44,17 @@ int	is_diff_num(t_stack *list)
 		{
 			if (n == check->value)
 				return (0);
-			check = check->next;		
+			check = check->next;
 		}
 		current = current->next;
 	}
 	return (1);
 }
 
-//function to make stack from argv
-//if it fail to init, return 0
-//success to init, return 1
-int	init_stack_a(t_stack **a, char **args)
+static int	init_stack_a(t_stack **a, char **args)
 {
 	long	value;
+
 	while (*args)
 	{
 		if (!is_valid_number(*args))
@@ -116,8 +71,6 @@ int	init_stack_a(t_stack **a, char **args)
 	return (1);
 }
 
-//as a validation, it has different ways using split or not 
-//then to free collectlly it should make a flag whether using split
 int	main(int ac, char **av)
 {
 	char	**args;

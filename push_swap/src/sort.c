@@ -12,14 +12,12 @@
 
 #include "../include/push_swap.h"
 
-///Orders the number of value in a. 
-///The return value is the number of values in a.
-int		re_rank(t_stack **a)
+int	re_rank(t_stack **a)
 {
 	int		i;
 	int		ret;
 	t_stack	*tmp;
-	t_stack *current;
+	t_stack	*current;
 
 	ret = 0;
 	current = *a;

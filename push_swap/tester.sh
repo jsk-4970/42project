@@ -6,13 +6,16 @@ RED="\033[31m"
 YELLOW="\033[33m"
 RESET="\033[0m"
 
-# チェッカーの場所（優先順位: checker_linux -> checker -> ./checker）
-if [ -f ./checker_linux ]; then
+# チェッカーの場所（OS検出して適切なものを選択）
+if [[ "$OSTYPE" == "darwin"* ]] && [ -f ./checker_Mac ]; then
+    CHECKER="./checker_Mac"
+elif [ -f ./checker_linux ]; then
     CHECKER="./checker_linux"
 elif [ -f ./checker ]; then
     CHECKER="./checker"
 else
     echo -e "${RED}Error: checker program not found!${RESET}"
+    echo -e "Please download checker_Mac (macOS) or checker_linux (Linux)"
     exit 1
 fi
 

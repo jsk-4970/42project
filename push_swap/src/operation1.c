@@ -15,6 +15,7 @@
 void	sa(t_stack **a)
 {
 	int	tmp;
+
 	if (a == NULL || *a == NULL || (*a)->next == NULL)
 		return ;
 	tmp = (*a)->value;
@@ -26,6 +27,7 @@ void	sa(t_stack **a)
 void	sb(t_stack **b)
 {
 	int	tmp;
+
 	if (b == NULL || *b == NULL || (*b)->next == NULL)
 		return ;
 	tmp = (*b)->value;
@@ -45,7 +47,7 @@ void	push(t_stack **from, t_stack **to)
 	tmp->next = *to;
 	*to = tmp;
 }
-	
+
 void	pa(t_stack **a, t_stack **b)
 {
 	push(b, a);
