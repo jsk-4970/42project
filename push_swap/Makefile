@@ -8,14 +8,9 @@ CFLAGS		= -Wall -Wextra -Werror
 SRCDIR		= src
 INCDIR		= include
 OBJDIR		= obj
-#LIBFTDIR	= libft
-
-# Libft
-#LIBFT		= $(LIBFTDIR)/libft.a
 
 # Source files
 SRCS		= $(SRCDIR)/main.c \
-			  $(SRCDIR)/parse.c \
 			  $(SRCDIR)/sort.c \
 			  $(SRCDIR)/sort_small.c \
 			  $(SRCDIR)/stack.c \
@@ -37,9 +32,6 @@ HEADER		= $(INCDIR)/push_swap.h
 
 # Rules
 all: $(NAME)
-
-#$(LIBFT):
-#	$(MAKE) -C $(LIBFTDIR)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS)

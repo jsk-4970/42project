@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
-# include <stdarg.h>
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -59,6 +58,5 @@ char	*ft_strdup(const char *s);
 char	**ft_split(char const *s, char c);
 long	ft_atol(const char *nptr);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s);
 
 #endif
