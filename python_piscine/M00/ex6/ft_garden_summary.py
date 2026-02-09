@@ -1,6 +1,6 @@
 def ft_garden_summary():
-	name = input("Enter garden name: ")
-	num_plants = int(input("Enter number of plants: "))
-	print(f"Garden: {name}")
-	print(f"Number of plants: {num_plants}")
-	print("Status: Growing well!")
+    name = input("Enter garden name: ")
+    num_plants = input("Enter number of plants: ")
+    print(f"Garden: {name}")
+    print(f"Plants: {num_plants}")
+    print("Status: Growing well!")
