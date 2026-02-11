@@ -4,6 +4,7 @@ class Plant:
 	def __init__(self, name: str, height: int, age: int):
 		self.name = name
 		self.height = height
+		self.initial_height = height
 		self.age = age
 	def update_height(self):
 		self.height += 1
@@ -21,6 +22,7 @@ def ft_plant_growth():
 		rose.update_age()
 	print("=== Day 7 ===")
 	print(rose.get_info())
+	print(f"Growth this week: +{rose.height - rose.initial_height}cm")
 	
 
 if __name__ == "__main__":
