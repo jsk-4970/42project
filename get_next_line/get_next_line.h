@@ -13,29 +13,28 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
 
-#ifndef BUFSIZE
-# define BUFSIZE 42
-#endif
+# ifndef BUFSIZE
+#  define BUFSIZE 42
+# endif
 
 typedef struct s_list
 {
-    char            *content;
-    struct s_list   *next;
-}                   t_list;
+	char			*content;
+	struct s_list	*next;
+}	t_list;
 
-size_t  ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 int		len_to_newline(const char *buf);
-size_t  ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char    *ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_strjoin(char const *s1, char const *s2);
 
-char    *get_next_line(int fd);
-t_list  *append(t_list *new_node, char *buf);
-//int     len_to_newline(char *str);
+char	*get_next_line(int fd);
+t_list	*append(t_list *new_node, char *buf);
 
 #endif

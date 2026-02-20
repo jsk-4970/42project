@@ -56,7 +56,6 @@ int	len_to_newline(const char *s)
 	return (-1);
 }
 
-
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	slen;
