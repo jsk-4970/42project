@@ -6,11 +6,15 @@ class Plant():
 		self.height = height
 		self.initial_height = height
 		self.age = age
+
 	def update_height(self):
 		self.height += 1
+
 	def update_age(self):
 		self.age += 1
+
 	def create_garden_network(self, other_plant):
+
 	def get_info(self):
 		return (f"{self.name}: {self.height}cm, {self.age}days old")
 
@@ -18,6 +22,7 @@ class FloweringPlant(Plant):
 	def __init__(self, name: str, height: int, age: int, flower_color: str):
 		super().__init__(name, height, age)
 		self.flower_color = flower_color
+
 	def get_info(self):
 		return (f"{self.name}: {self.height}cm, {self.age}days old, {self.flower_color} flowers")
 
@@ -25,6 +30,7 @@ class PrizeFlower(FloweringPlant):
 	def __init__(self, name: str, height: int, age: int, flower_color: str, prize: str):
 		super().__init__(name, height, age, flower_color)
 		self.prize = prize
+
 	def get_info(self):
 		return (f"{self.name}: {self.height}cm, {self.age}days old, {self.flower_color} flowers, won {self.prize}")
 
